@@ -43,7 +43,7 @@ export function Hero() {
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-[90vh] lg:min-h-screen flex flex-col justify-center">
-        {/* Logo prominente - se mueve al scrollear */}
+        {/* Logo prominente - Grande y centrado */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -52,16 +52,16 @@ export function Hero() {
             opacity: logoOpacity,
             y: logoY,
           }}
-          className="mb-6 lg:mb-8"
+          className="mb-8 lg:mb-10 flex justify-center"
         >
           <motion.img 
             src={logoFull} 
             alt="Martín Pinto Propiedades" 
-            className="h-16 sm:h-20 lg:h-28 w-auto"
+            className="h-32 sm:h-40 lg:h-52 w-auto drop-shadow-lg"
           />
         </motion.div>
 
-        <div className="max-w-xl lg:max-w-2xl">
+        <div className="max-w-xl lg:max-w-2xl mx-auto text-center">
           {/* Main Title */}
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
@@ -103,7 +103,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap gap-2 mb-5 lg:mb-6"
+            className="flex flex-wrap justify-center gap-2 mb-5 lg:mb-6"
           >
             {[
               'Tasaciones profesionales',
@@ -130,7 +130,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row gap-3 mb-6 lg:mb-8"
+            className="flex flex-col sm:flex-row justify-center gap-3 mb-6 lg:mb-8"
           >
             <Button 
               variant="primary" 
@@ -172,12 +172,12 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Stats - Bottom - Compact */}
+        {/* Stats - Bottom - Compact and Centered */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="grid grid-cols-3 gap-4 mt-8 lg:mt-10 pt-6 border-t border-[#2F2A29]/10 max-w-md"
+          className="grid grid-cols-3 gap-4 mt-8 lg:mt-10 pt-6 border-t border-[#2F2A29]/10 max-w-md mx-auto text-center"
         >
           {[
             { value: '20+', label: 'Años exp.' },
