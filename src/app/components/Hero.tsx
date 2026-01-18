@@ -4,8 +4,8 @@ import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
 
-// Video de Buenos Aires de fondo
-const heroVideo = 'https://videos.pexels.com/video-files/5765906/5765906-uhd_2560_1440_24fps.mp4';
+// Video de ciudad moderna de fondo
+const heroVideo = 'https://cdn.pixabay.com/video/2020/05/25/40130-424930032_large.mp4';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -31,12 +31,13 @@ export function Hero() {
   return (
     <section id="hero" className="relative min-h-[90vh] lg:min-h-screen overflow-hidden">
       {/* Background Video - Full width with overlay */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-[#2F2A29]">
         <video
           autoPlay
           muted
           loop
           playsInline
+          poster="https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=2000&q=80"
           className="w-full h-full object-cover object-center"
         >
           <source src={heroVideo} type="video/mp4" />
