@@ -4,8 +4,10 @@ import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
 
-// Video de ciudad moderna de fondo
-const heroVideo = 'https://cdn.pixabay.com/video/2020/05/25/40130-424930032_large.mp4';
+// Video de Buenos Aires - Obelisco y ciudad
+const heroVideo = 'https://cdn.pixabay.com/video/2019/06/11/24268-342285998_large.mp4';
+// Fallback: video alternativo de arquitectura urbana
+const heroVideoFallback = 'https://cdn.pixabay.com/video/2016/09/05/4857-182447339_large.mp4';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -30,15 +32,19 @@ export function Hero() {
 
   return (
     <section id="hero" className="relative min-h-[90vh] lg:min-h-screen overflow-hidden">
-      {/* Background Video - Full width with overlay */}
-      <div className="absolute inset-0 bg-[#2F2A29]">
+      {/* Background Video - Buenos Aires */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] to-[#16213e]">
         <video
           autoPlay
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=2000&q=80"
+          poster="https://images.unsplash.com/photo-1612294037637-ec328d0e075e?auto=format&fit=crop&w=2000&q=80"
           className="w-full h-full object-cover object-center"
+          onError={(e) => {
+            const video = e.currentTarget;
+            video.src = heroVideoFallback;
+          }}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
