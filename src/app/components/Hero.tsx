@@ -4,9 +4,9 @@ import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
 
-// Video de Buenos Aires - Skyline con edificios y propiedades
-const heroVideo = 'https://videos.pexels.com/video-files/3629519/3629519-uhd_2560_1440_24fps.mp4';
-// Poster: imagen de Buenos Aires como fallback
+// Video de Buenos Aires - Capital de Argentina (Pixabay ID: 95546)
+const heroVideo = 'https://cdn.pixabay.com/video/2021/03/17/68171-525809633_large.mp4';
+// Poster: imagen del Obelisco de Buenos Aires como fallback
 const heroPoster = 'https://images.unsplash.com/photo-1612294037637-ec328d0e075e?auto=format&fit=crop&w=2000&q=80';
 
 export function Hero() {
