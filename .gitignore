@@ -26,3 +26,6 @@ npm-debug.log*
 # Cache
 .cache/
 .eslintcache
+
+# Large video files (exceed GitHub 100MB limit)
+public/hero-video.mp4

@@ -4,8 +4,8 @@ import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
 
-// Video de Buenos Aires - Capital de Argentina (Pixabay ID: 95546)
-const heroVideo = 'https://cdn.pixabay.com/video/2021/03/17/68171-525809633_large.mp4';
+// Video de Buenos Aires - archivo local en public/
+const heroVideo = '/hero-video.mp4';
 // Poster: imagen del Obelisco de Buenos Aires como fallback
 const heroPoster = 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=2000&q=80';
 
