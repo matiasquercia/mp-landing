@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Award, GraduationCap, Building2, Users, Briefcase, Calendar } from 'lucide-react';
-import { Button } from './ui/Button';
 import { motion } from 'motion/react';
 import profileImage1 from '../../assets/fotos/4.jpeg';
 import profileImage2 from '../../assets/fotos/2.jpeg';
 import profileImage3 from '../../assets/fotos/1.jpeg';
 
 export function About() {
+  const [activeTimelineIndex, setActiveTimelineIndex] = useState<number | null>(null);
   const timeline = [
     {
       year: '2006',
@@ -181,111 +181,148 @@ export function About() {
             <p className="text-[#6B7280]">Más de 18 años de evolución en el mercado inmobiliario</p>
           </div>
 
-          {/* Desktop Timeline */}
+          {/* Desktop Timeline - Interactive */}
           <div className="hidden md:block relative">
             {/* Timeline line */}
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-[#D6ECBA] via-[#D6ECBA] to-[#D6ECBA]/50 rounded-full transform -translate-y-1/2" />
+            <div className="absolute top-8 left-0 right-0 h-1 bg-[#E5E7EB] rounded-full">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-[#D6ECBA] to-[#D6ECBA]/70 rounded-full"
+                initial={{ width: '0%' }}
+                animate={{ width: activeTimelineIndex !== null ? `${((activeTimelineIndex + 1) / timeline.length) * 100}%` : '100%' }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
             
-            <div className="grid md:grid-cols-3 gap-8 relative">
-              {timeline.map((item, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, y: index % 2 === 0 ? 30 : -30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className={`relative ${index % 2 === 0 ? 'pt-24' : 'pb-24'}`}
-                >
-                  {/* Timeline node */}
-                  <div className={`absolute left-1/2 transform -translate-x-1/2 ${index % 2 === 0 ? 'top-0' : 'bottom-0'}`}>
-                    <motion.div 
-                      whileHover={{ scale: 1.1 }}
-                      className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-[#D6ECBA]"
-                    >
-                      <item.icon className="w-6 h-6 text-[#2F2A29]" />
-                    </motion.div>
-                    <div className={`absolute left-1/2 w-0.5 h-5 bg-[#D6ECBA] transform -translate-x-1/2 ${index % 2 === 0 ? 'top-full' : 'bottom-full'}`} />
-                  </div>
-                  
-                  {/* Content card */}
+            <div className="grid md:grid-cols-3 gap-6 relative">
+              {timeline.map((item, index) => {
+                const isActive = activeTimelineIndex === index;
+                return (
                   <motion.div 
-                    whileHover={{ y: index % 2 === 0 ? 5 : -5, scale: 1.02 }}
-                    className={`bg-white rounded-2xl p-5 shadow-lg border border-[#E5E7EB]/50 ${index % 2 === 0 ? 'mt-6' : 'mb-6'}`}
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.15 }}
+                    className="relative pt-20 cursor-pointer"
+                    onClick={() => setActiveTimelineIndex(isActive ? null : index)}
                   >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#D6ECBA]/30 rounded-full mb-3">
-                      <Calendar className="w-3.5 h-3.5 text-[#2F2A29]" />
-                      <span className="text-sm font-bold text-[#2F2A29]">{item.year}</span>
+                    {/* Timeline node - centered at top */}
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
+                      <motion.div 
+                        whileHover={{ scale: 1.1 }}
+                        animate={{ 
+                          scale: isActive ? 1.15 : 1,
+                          backgroundColor: isActive ? '#D6ECBA' : '#ffffff'
+                        }}
+                        className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg border-4 transition-colors duration-300 ${
+                          isActive ? 'border-[#2F2A29]' : 'border-[#D6ECBA]'
+                        }`}
+                      >
+                        <item.icon className={`w-7 h-7 transition-colors duration-300 ${isActive ? 'text-[#2F2A29]' : 'text-[#6B7280]'}`} />
+                      </motion.div>
                     </div>
-                    <h4 className="text-lg font-semibold text-[#2F2A29] mb-2">{item.title}</h4>
-                    <p className="text-[#6B7280] text-sm leading-relaxed mb-2">{item.description}</p>
-                    <div className="inline-block px-2.5 py-1 bg-[#F9FAFB] rounded-md">
-                      <span className="text-xs font-medium text-[#2F2A29]">{item.highlight}</span>
-                    </div>
+                    
+                    {/* Content card */}
+                    <motion.div 
+                      animate={{ 
+                        scale: isActive ? 1.03 : 1,
+                        y: isActive ? -5 : 0
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className={`rounded-2xl p-5 shadow-lg border-2 transition-all duration-300 ${
+                        isActive 
+                          ? 'bg-[#2F2A29] border-[#2F2A29] text-white' 
+                          : 'bg-white border-[#E5E7EB]/50 hover:border-[#D6ECBA]'
+                      }`}
+                    >
+                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3 ${
+                        isActive ? 'bg-[#D6ECBA]' : 'bg-[#D6ECBA]/30'
+                      }`}>
+                        <Calendar className="w-3.5 h-3.5 text-[#2F2A29]" />
+                        <span className="text-sm font-bold text-[#2F2A29]">{item.year}</span>
+                      </div>
+                      <h4 className={`text-lg font-semibold mb-2 ${isActive ? 'text-white' : 'text-[#2F2A29]'}`}>
+                        {item.title}
+                      </h4>
+                      <p className={`text-sm leading-relaxed mb-3 ${isActive ? 'text-white/80' : 'text-[#6B7280]'}`}>
+                        {item.description}
+                      </p>
+                      <div className={`inline-block px-2.5 py-1 rounded-md ${
+                        isActive ? 'bg-white/20' : 'bg-[#F9FAFB]'
+                      }`}>
+                        <span className={`text-xs font-medium ${isActive ? 'text-[#D6ECBA]' : 'text-[#2F2A29]'}`}>
+                          {item.highlight}
+                        </span>
+                      </div>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
-          {/* Mobile Timeline */}
-          <div className="md:hidden space-y-5">
-            {timeline.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative pl-10"
-              >
-                {/* Timeline line */}
-                {index < timeline.length - 1 && (
-                  <div className="absolute left-[17px] top-10 bottom-0 w-0.5 bg-gradient-to-b from-[#D6ECBA] to-[#D6ECBA]/30" />
-                )}
-                
-                {/* Node */}
-                <div className="absolute left-0 top-0 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-[#D6ECBA]">
-                  <item.icon className="w-4 h-4 text-[#2F2A29]" />
-                </div>
-                
-                {/* Content */}
-                <div className="bg-white rounded-xl p-4 shadow-md border border-[#E5E7EB]/50">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm font-bold text-[#2F2A29] bg-[#D6ECBA]/30 px-2 py-0.5 rounded">{item.year}</span>
-                    <span className="text-xs text-[#6B7280]">{item.highlight}</span>
-                  </div>
-                  <h4 className="text-base font-semibold text-[#2F2A29] mb-1">{item.title}</h4>
-                  <p className="text-[#6B7280] text-sm">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
+          {/* Mobile Timeline - Interactive */}
+          <div className="md:hidden space-y-4">
+            {timeline.map((item, index) => {
+              const isActive = activeTimelineIndex === index;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative pl-12 cursor-pointer"
+                  onClick={() => setActiveTimelineIndex(isActive ? null : index)}
+                >
+                  {/* Timeline line */}
+                  {index < timeline.length - 1 && (
+                    <div className={`absolute left-[19px] top-12 bottom-0 w-0.5 transition-colors duration-300 ${
+                      activeTimelineIndex !== null && activeTimelineIndex > index ? 'bg-[#D6ECBA]' : 'bg-[#E5E7EB]'
+                    }`} />
+                  )}
+                  
+                  {/* Node */}
+                  <motion.div 
+                    animate={{ 
+                      scale: isActive ? 1.15 : 1,
+                      backgroundColor: isActive ? '#D6ECBA' : '#ffffff'
+                    }}
+                    className={`absolute left-0 top-0 w-10 h-10 rounded-full flex items-center justify-center shadow-md border-2 transition-colors duration-300 ${
+                      isActive ? 'border-[#2F2A29]' : 'border-[#D6ECBA]'
+                    }`}
+                  >
+                    <item.icon className={`w-5 h-5 transition-colors duration-300 ${isActive ? 'text-[#2F2A29]' : 'text-[#6B7280]'}`} />
+                  </motion.div>
+                  
+                  {/* Content */}
+                  <motion.div 
+                    animate={{ scale: isActive ? 1.02 : 1 }}
+                    className={`rounded-xl p-4 shadow-md border-2 transition-all duration-300 ${
+                      isActive 
+                        ? 'bg-[#2F2A29] border-[#2F2A29] text-white' 
+                        : 'bg-white border-[#E5E7EB]/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`text-sm font-bold px-2 py-0.5 rounded ${
+                        isActive ? 'bg-[#D6ECBA] text-[#2F2A29]' : 'bg-[#D6ECBA]/30 text-[#2F2A29]'
+                      }`}>{item.year}</span>
+                      <span className={`text-xs ${isActive ? 'text-[#D6ECBA]' : 'text-[#6B7280]'}`}>{item.highlight}</span>
+                    </div>
+                    <h4 className={`text-base font-semibold mb-1 ${isActive ? 'text-white' : 'text-[#2F2A29]'}`}>
+                      {item.title}
+                    </h4>
+                    <p className={`text-sm ${isActive ? 'text-white/80' : 'text-[#6B7280]'}`}>
+                      {item.description}
+                    </p>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
 
-        {/* CTA */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mt-8"
-        >
-          <Button
-            variant="primary"
-            onClick={() => {
-              const element = document.getElementById('contact');
-              if (element) {
-                const offset = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - offset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-              }
-            }}
-            className="shadow-lg text-sm"
-          >
-            Contactar ahora
-          </Button>
-        </motion.div>
       </div>
     </section>
   );
