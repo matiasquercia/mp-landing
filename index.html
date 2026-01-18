@@ -7,20 +7,34 @@
       <title>Martín Pinto Propiedades | Corredor Inmobiliario en CABA</title>
       <meta name="description" content="Corredor Inmobiliario y Martillero Público matriculado. Venta, alquiler y tasaciones profesionales en CABA. Más de 20 años de experiencia." />
       
-      <!-- Favicon para modo claro -->
-      <link rel="icon" href="/favicon-light.png" type="image/png" media="(prefers-color-scheme: light)" />
-      <!-- Favicon para modo oscuro -->
-      <link rel="icon" href="/favicon-dark.png" type="image/png" media="(prefers-color-scheme: dark)" />
-      <!-- Favicon por defecto (modo claro) -->
-      <link rel="icon" href="/favicon-light.png" type="image/png" />
-      
-      <!-- Apple Touch Icon -->
+      <!-- Favicon dinámico según tema -->
+      <link rel="icon" id="favicon" href="/favicon-light.png" type="image/png" />
       <link rel="apple-touch-icon" href="/favicon-light.png" />
     </head>
 
     <body>
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
+      
+      <!-- Script para cambiar favicon según tema del sistema -->
+      <script>
+        (function() {
+          const favicon = document.getElementById('favicon');
+          const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+          
+          function updateFavicon(isDark) {
+            favicon.href = isDark ? '/favicon-dark.png' : '/favicon-light.png';
+          }
+          
+          // Actualizar al cargar
+          updateFavicon(darkModeQuery.matches);
+          
+          // Escuchar cambios de tema
+          darkModeQuery.addEventListener('change', function(e) {
+            updateFavicon(e.matches);
+          });
+        })();
+      </script>
     </body>
   </html>
   
