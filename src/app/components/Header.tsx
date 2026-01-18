@@ -51,9 +51,9 @@ export function Header() {
 
   const navItems = [
     { label: 'Inicio', href: 'hero' },
-    { label: 'Servicios', href: 'services' },
-    { label: 'Propiedades', href: 'properties' },
     { label: 'Sobre mí', href: 'about' },
+    { label: 'Servicios', href: 'services' },
+    { label: 'Alianzas', href: 'alliances' },
     { label: 'Contacto', href: 'contact' }
   ];
 
