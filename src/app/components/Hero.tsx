@@ -4,8 +4,10 @@ import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
 
-// Video de ciudad/skyline - funcional y testeado
-const heroVideo = 'https://static.videezy.com/system/resources/previews/000/044/030/original/30_BONUSCLIP.mp4';
+// Video de Buenos Aires - Skyline con edificios y propiedades
+const heroVideo = 'https://videos.pexels.com/video-files/3629519/3629519-uhd_2560_1440_24fps.mp4';
+// Poster: imagen de Buenos Aires como fallback
+const heroPoster = 'https://images.unsplash.com/photo-1612294037637-ec328d0e075e?auto=format&fit=crop&w=2000&q=80';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -37,7 +39,7 @@ export function Hero() {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1612294037637-ec328d0e075e?auto=format&fit=crop&w=2000&q=80"
+          poster={heroPoster}
           className="w-full h-full object-cover object-center"
         >
           <source src={heroVideo} type="video/mp4" />
@@ -62,7 +64,7 @@ export function Hero() {
           <motion.img 
             src={logoFull} 
             alt="Martín Pinto Propiedades" 
-            className="h-32 sm:h-40 lg:h-52 w-auto drop-shadow-lg"
+            className="h-40 sm:h-52 lg:h-64 w-auto drop-shadow-xl"
           />
         </motion.div>
 
