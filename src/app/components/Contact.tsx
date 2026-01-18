@@ -42,24 +42,24 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 lg:mb-10"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#2F2A29] mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2F2A29] mb-2">
             Contacto
           </h2>
-          <p className="text-lg text-[#6B7280] max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#6B7280]">
             Hablemos de tu proyecto. Primera consulta sin cargo
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -67,8 +67,8 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-[#F9FAFB] rounded-2xl p-8 border border-[#E5E7EB]/50">
-              <h3 className="text-2xl font-bold text-[#2F2A29] mb-6">
+            <div className="bg-[#F9FAFB] rounded-xl p-5 sm:p-6 border border-[#E5E7EB]/50">
+              <h3 className="text-lg sm:text-xl font-bold text-[#2F2A29] mb-4">
                 Enviá tu consulta
               </h3>
 

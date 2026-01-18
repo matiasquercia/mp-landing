@@ -44,50 +44,44 @@ export function TrustSection() {
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Subtle pattern background */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232F2A29' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-      }} />
-      
+    <section className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 lg:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#D6ECBA]/30 rounded-full mb-6 border border-[#D6ECBA]/30">
-            <Shield className="w-4 h-4 text-[#2F2A29]" />
-            <span className="text-sm font-medium text-[#2F2A29]">Confianza y profesionalismo</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#D6ECBA]/30 rounded-full mb-4 border border-[#D6ECBA]/30">
+            <Shield className="w-3.5 h-3.5 text-[#2F2A29]" />
+            <span className="text-xs font-medium text-[#2F2A29]">Confianza y profesionalismo</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#2F2A29] mb-6 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2F2A29] mb-3 tracking-tight">
             ¿Por qué trabajar conmigo?
           </h2>
-          <p className="text-xl text-[#6B7280] max-w-3xl mx-auto">
-            Más de dos décadas de experiencia respaldando cada operación con profesionalismo y resultados
+          <p className="text-sm sm:text-base text-[#6B7280] max-w-2xl mx-auto">
+            Más de dos décadas de experiencia respaldando cada operación con profesionalismo
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-7 shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-black/10 transition-all duration-300 border border-[#E5E7EB]/50 group cursor-default"
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              className="bg-white rounded-xl p-4 sm:p-5 shadow-md hover:shadow-lg transition-all duration-300 border border-[#E5E7EB]/50 group"
             >
-              <div className={`w-14 h-14 bg-gradient-to-br ${benefit.color} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm`}>
-                <benefit.icon className="w-7 h-7 text-[#2F2A29]" />
+              <div className={`w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br ${benefit.color} rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform`}>
+                <benefit.icon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#2F2A29]" />
               </div>
-              <h3 className="text-lg font-semibold text-[#2F2A29] mb-2">
+              <h3 className="text-sm sm:text-base font-semibold text-[#2F2A29] mb-1">
                 {benefit.title}
               </h3>
-              <p className="text-[#6B7280] text-sm leading-relaxed">
+              <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed line-clamp-2">
                 {benefit.description}
               </p>
             </motion.div>
@@ -99,10 +93,9 @@ export function TrustSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-20 rounded-3xl overflow-hidden relative"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-10 lg:mt-14 rounded-2xl overflow-hidden relative"
         >
-          {/* Background image */}
           <div className="absolute inset-0">
             <img 
               src={workingImage} 
@@ -112,18 +105,18 @@ export function TrustSection() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#2F2A29]/95 via-[#2F2A29]/90 to-[#2F2A29]/80" />
           </div>
           
-          <div className="relative p-10 sm:p-14 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="relative p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row items-center justify-between gap-5">
             <div className="text-center lg:text-left">
-              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
                 Evaluación sin compromiso
               </h3>
-              <p className="text-lg text-white/80 max-w-xl">
-                Contactame para una primera consulta y evaluación profesional de tu propiedad. Sin costo y sin obligación.
+              <p className="text-sm sm:text-base text-white/80 max-w-lg">
+                Primera consulta y evaluación profesional de tu propiedad. Sin costo.
               </p>
             </div>
             <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => {
                 const element = document.getElementById('contact');
                 if (element) {
@@ -133,10 +126,10 @@ export function TrustSection() {
                   window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
               }}
-              className="flex items-center gap-3 px-8 py-4 bg-[#D6ECBA] text-[#2F2A29] rounded-xl hover:bg-[#D6ECBA]/90 transition-colors font-semibold text-lg shadow-xl shadow-[#D6ECBA]/30 whitespace-nowrap"
+              className="flex items-center gap-2 px-5 py-3 bg-[#D6ECBA] text-[#2F2A29] rounded-lg hover:bg-[#D6ECBA]/90 transition-colors font-semibold text-sm shadow-lg whitespace-nowrap"
             >
-              Solicitar consulta gratuita
-              <ArrowRight className="w-5 h-5" />
+              Consulta gratuita
+              <ArrowRight className="w-4 h-4" />
             </motion.button>
           </div>
         </motion.div>

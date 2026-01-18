@@ -131,28 +131,6 @@ export function Properties() {
             </div>
           </motion.div>
         )}
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 bg-gradient-to-br from-[#2F2A29] to-[#3d3735] rounded-3xl p-12 text-center text-white"
-        >
-          <h3 className="text-3xl font-bold mb-4">
-            ¿No encontrás lo que buscás?
-          </h3>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Contactame y trabajaremos juntos para encontrar la propiedad ideal según tus necesidades
-          </p>
-          <button
-            onClick={scrollToContact}
-            className="px-8 py-4 bg-[#D6ECBA] text-[#2F2A29] rounded-xl hover:bg-[#D6ECBA]/90 transition-colors font-semibold text-lg"
-          >
-            Contactar ahora
-          </button>
-        </motion.div>
       </div>
 
       {/* Property Detail Modal */}
