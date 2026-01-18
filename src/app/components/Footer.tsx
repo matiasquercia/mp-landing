@@ -1,7 +1,7 @@
 import React from 'react';
 import { Instagram, Linkedin, Mail, Phone, MapPin, Award, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import logoImage from '../../assets/MP-prop-02.png';
+import logoImage from '../../assets/MP-prop-04.png';
 
 export function Footer() {
   const scrollToSection = (id: string) => {
