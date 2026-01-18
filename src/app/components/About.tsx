@@ -85,32 +85,32 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="grid grid-cols-2 gap-3">
-              {/* Main large image */}
-              <div className="col-span-2">
-                <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                  <img
-                    src={profileImage2}
-                    alt="Martín Pinto - Corredor Inmobiliario"
-                    className="w-full h-[250px] sm:h-[300px] object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2F2A29]/20 to-transparent" />
-                </div>
-              </div>
-              {/* Two smaller images */}
-              <div className="relative rounded-xl overflow-hidden shadow-lg">
-                <img
-                  src={profileImage3}
-                  alt="Martín Pinto profesional"
-                  className="w-full h-[140px] sm:h-[160px] object-cover object-top"
-                />
-              </div>
-              <div className="relative rounded-xl overflow-hidden shadow-lg">
+            <div className="flex gap-3 h-[350px] sm:h-[420px] lg:h-[480px]">
+              {/* Main large image - left, full height */}
+              <div className="flex-[2] relative rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={profileImage1}
-                  alt="Martín Pinto trabajando"
-                  className="w-full h-[140px] sm:h-[160px] object-cover object-top"
+                  alt="Martín Pinto - Corredor Inmobiliario trabajando"
+                  className="w-full h-full object-cover object-top"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2F2A29]/20 to-transparent" />
+              </div>
+              {/* Two smaller images - right, stacked */}
+              <div className="flex-1 flex flex-col gap-3">
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-lg">
+                  <img
+                    src={profileImage2}
+                    alt="Martín Pinto profesional"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-lg">
+                  <img
+                    src={profileImage3}
+                    alt="Martín Pinto"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>
