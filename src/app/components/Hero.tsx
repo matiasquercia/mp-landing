@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, TrendingUp, ArrowRight, Award, FileCheck } from 'lucide-react';
+import { Home, ArrowRight } from 'lucide-react';
 import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
@@ -52,7 +52,7 @@ export function Hero() {
             opacity: logoOpacity,
             y: logoY,
           }}
-          className="mb-8 lg:mb-10 flex justify-center"
+          className="mb-12 lg:mb-16 flex justify-center"
         >
           <motion.img 
             src={logoFull} 
@@ -130,7 +130,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row justify-center gap-3 mb-6 lg:mb-8"
+            className="flex flex-col sm:flex-row justify-center gap-3"
           >
             <Button 
               variant="primary" 
@@ -150,25 +150,6 @@ export function Hero() {
               <Home className="w-4 h-4" />
               Ver propiedades
             </Button>
-          </motion.div>
-
-          {/* Credential Card - Compact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="inline-flex items-center gap-3 bg-[#2F2A29] text-white rounded-xl px-4 py-3 shadow-lg"
-          >
-            <div className="w-10 h-10 bg-[#D6ECBA]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-              <FileCheck className="w-5 h-5 text-[#D6ECBA]" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-sm font-bold">CUCICBA</span>
-                <span className="text-[#D6ECBA] text-sm font-semibold">N° 9356</span>
-              </div>
-              <div className="text-xs text-white/70">Corredor Inmobiliario Matriculado</div>
-            </div>
           </motion.div>
         </div>
 
