@@ -4,8 +4,8 @@ import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
 
-// Imagen de edificio moderno de Unsplash
-const heroImage = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80';
+// Video de Buenos Aires de fondo
+const heroVideo = 'https://videos.pexels.com/video-files/5765906/5765906-uhd_2560_1440_24fps.mp4';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -30,16 +30,20 @@ export function Hero() {
 
   return (
     <section id="hero" className="relative min-h-[90vh] lg:min-h-screen overflow-hidden">
-      {/* Background Image - Full width with overlay */}
+      {/* Background Video - Full width with overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Edificio moderno - Propiedades en Buenos Aires"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover object-center"
-        />
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
         {/* Gradient overlays for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60 lg:via-white/70 lg:to-white/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60 lg:via-white/70 lg:to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/50" />
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-[90vh] lg:min-h-screen flex flex-col justify-center">
