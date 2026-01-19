@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logoFull from '../../assets/MP-prop-01.png';
@@ -137,7 +137,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row justify-center gap-3"
+            className="flex justify-center"
           >
             <Button 
               variant="primary" 
@@ -147,15 +147,6 @@ export function Hero() {
             >
               Consulta gratuita
               <ArrowRight className="w-4 h-4" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="lg"
-              onClick={() => scrollToSection('properties')}
-              className="gap-2 bg-white/60 backdrop-blur-sm hover:bg-white/80 text-sm lg:text-base"
-            >
-              <Home className="w-4 h-4" />
-              Ver propiedades
             </Button>
           </motion.div>
         </div>

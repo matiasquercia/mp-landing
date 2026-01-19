@@ -76,7 +76,7 @@ export function Services() {
   };
 
   return (
-    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-white via-[#F9FAFB] to-white relative overflow-hidden">
+    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Service */}
         <motion.div

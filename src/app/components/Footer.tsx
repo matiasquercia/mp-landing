@@ -23,6 +23,7 @@ export function Footer() {
     { label: 'Sobre mí', href: 'about' },
     { label: 'Servicios', href: 'services' },
     { label: 'Alianzas', href: 'alliances' },
+    { label: 'FAQ', href: 'faq' },
     { label: 'Contacto', href: 'contact' }
   ];
 
