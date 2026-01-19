@@ -1,32 +1,26 @@
 import React from 'react';
-import { Handshake, Scale, Calculator, Palette, Users } from 'lucide-react';
+import { Handshake, Scale, Gavel, Palette } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export function Alliances() {
   const allies = [
     {
       icon: Scale,
-      title: 'Escribanía Asociada',
-      description: 'Profesionales especializados en operaciones inmobiliarias, garantizando seguridad jurídica en cada transacción.',
+      title: 'Escribanía asociada',
+      description: 'Para garantizar seguridad jurídica y agilidad en las operaciones.',
       color: 'from-blue-100/60 to-blue-50/40'
     },
     {
-      icon: Calculator,
-      title: 'Estudio Contable Especializado',
-      description: 'Asesoramiento impositivo y contable para optimizar tu inversión inmobiliaria.',
+      icon: Gavel,
+      title: 'Estudio jurídico especializado',
+      description: 'Especializado en sucesiones complejas, acompañando procesos patrimoniales que requieren un abordaje legal específico.',
       color: 'from-emerald-100/60 to-emerald-50/40'
     },
     {
       icon: Palette,
-      title: 'Diseñador de Interiores',
-      description: 'Home staging y diseño para potenciar el valor y atractivo de tu propiedad.',
+      title: 'Diseñador/a de interiores',
+      description: 'Orientado a la optimización y puesta en valor de propiedades destinadas a alquiler temporario, mejorando su rentabilidad y atractivo comercial.',
       color: 'from-purple-100/60 to-purple-50/40'
-    },
-    {
-      icon: Users,
-      title: 'Aliados Estratégicos',
-      description: 'Red de profesionales del sector para cubrir todas tus necesidades inmobiliarias.',
-      color: 'from-amber-100/60 to-amber-50/40'
     }
   ];
 
@@ -46,15 +40,15 @@ export function Alliances() {
             <span className="text-xs font-medium text-[#2F2A29]">Trabajo en equipo</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2F2A29] mb-3 tracking-tight">
-            Alianzas Profesionales
+            Alianzas profesionales
           </h2>
           <p className="text-sm sm:text-base text-[#6B7280] max-w-2xl mx-auto">
-            Para brindar un servicio integral y de excelencia, trabajo en conjunto con un equipo de profesionales especializados.
+            Para brindar un servicio integral y de excelencia, trabajo en conjunto con un equipo de profesionales especializados, seleccionados por su trayectoria y confiabilidad.
           </p>
         </motion.div>
 
         {/* Allies Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {allies.map((ally, index) => (
             <motion.div
               key={index}
@@ -78,17 +72,30 @@ export function Alliances() {
           ))}
         </div>
 
+        {/* Closing text */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-8 lg:mt-10 text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-[#E5E7EB]/50"
+        >
+          <p className="text-sm sm:text-base text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
+            Estas alianzas permiten ofrecer soluciones completas, cuidando cada detalle del proceso y brindando tranquilidad al propietario.
+          </p>
+        </motion.div>
+
         {/* Disclaimer */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 lg:mt-10 text-center"
+          className="mt-6 text-center"
         >
           <p className="text-xs text-[#9CA3AF] max-w-2xl mx-auto leading-relaxed">
-            Las alianzas con escribanías, estudios contables y profesionales independientes se realizan a efectos de brindar un servicio integral. 
-            Cada profesional opera de manera independiente bajo su propia matrícula y responsabilidad.
+            Las alianzas con escribanías, estudios jurídicos y profesionales independientes se realizan a efectos de brindar un servicio integral. 
+            Cada profesional actúa de manera autónoma y bajo su propia responsabilidad técnica y legal.
           </p>
         </motion.div>
       </div>

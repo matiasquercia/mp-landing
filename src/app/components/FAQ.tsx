@@ -15,7 +15,7 @@ export function FAQ() {
     },
     {
       question: '¿Cómo se realiza la tasación de mi propiedad?',
-      answer: 'La tasación se basa en un estudio exhaustivo del mercado inmobiliario de CABA, considerando factores como ubicación, características del inmueble, estado de conservación, servicios del edificio, y precios comparables de propiedades similares en la zona. El objetivo es determinar un precio competitivo y realista.'
+      answer: 'La tasación se basa en un estudio exhaustivo del mercado inmobiliario de CABA, considerando 12 variables denominadas ponderaciones positivas o negativas de acuerdo a los comparables seleccionados: piso, disposición, antigüedad, expensas, confort, edificio sin ascensor, estado de conservación, categoría del edificio, vista, luminosidad/orientación, ubicación, días de publicación y precios comparables de propiedades similares en la zona. El objetivo es determinar un precio competitivo y realista.'
     },
     {
       question: '¿Con qué frecuencia recibo información sobre mi propiedad?',
@@ -26,12 +26,12 @@ export function FAQ() {
       answer: 'Publico en los principales portales inmobiliarios de Argentina y tengo presencia en redes profesionales. Cada plan de comercialización se adapta al perfil de la propiedad y al público objetivo que queremos alcanzar.'
     },
     {
-      question: '¿Qué tipo de fotografía profesional incluye el servicio?',
-      answer: 'La producción visual incluye fotografía profesional de alta calidad que resalta los mejores atributos de la propiedad, con correcta iluminación, encuadres estratégicos y postproducción. También creo material comercial optimizado para publicaciones digitales.'
+      question: '¿Qué tipo de material visual profesional incluye el servicio?',
+      answer: 'La producción visual incluye fotografía profesional de alta calidad y video recorrido que resaltan los mejores atributos de la propiedad, con correcta iluminación, encuadres estratégicos y postproducción. También creo material comercial optimizado para publicaciones digitales.'
     },
     {
       question: '¿Trabajás solo con ventas o también con alquileres?',
-      answer: 'Trabajo tanto con venta como con alquiler de propiedades. También ofrezco servicios de alquileres temporarios amoblados con fines específicos y administración de propiedades. Mi experiencia comenzó precisamente en la gestión de alquileres temporarios.'
+      answer: 'Trabajo tanto con venta como con alquiler de propiedades. También ofrezco servicios de alquileres temporarios amoblados para fines específicos y administración de propiedades. Mi experiencia comenzó precisamente en la gestión de alquileres temporarios.'
     },
     {
       question: '¿Qué garantías tengo sobre tu profesionalismo?',

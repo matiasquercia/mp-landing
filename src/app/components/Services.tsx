@@ -56,7 +56,7 @@ export function Services() {
     {
       icon: Calendar,
       title: 'Alquileres temporarios',
-      description: 'Amoblados con fines específicos'
+      description: 'Propiedades amobladas para estadías cortas'
     },
     {
       icon: Shield,

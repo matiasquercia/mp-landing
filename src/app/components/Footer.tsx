@@ -170,6 +170,35 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Legal Notice */}
+        <div className="border-t border-white/10 pt-8 mb-8">
+          <p className="text-white/50 text-xs leading-relaxed max-w-4xl mx-auto text-center">
+            Martin Pinto Propiedades es una firma inmobiliaria operada por Martín Pinto, Corredor Inmobiliario y Martillero Público matriculado en el Colegio Único de Corredores Inmobiliarios de la Ciudad de Buenos Aires (CUCICBA), Matrícula Nº 9356, conforme a la normativa vigente.
+          </p>
+        </div>
+
+        {/* Disclaimers */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="text-center md:text-left">
+            <h5 className="text-white/70 text-xs font-semibold mb-2">Tasaciones</h5>
+            <p className="text-white/40 text-xs leading-relaxed">
+              Las tasaciones realizadas tienen carácter orientativo y profesional, basadas en estudios comparativos de mercado y operaciones reales. El valor final de comercialización puede variar según condiciones del inmueble, demanda y contexto económico.
+            </p>
+          </div>
+          <div className="text-center md:text-left">
+            <h5 className="text-white/70 text-xs font-semibold mb-2">Plazos</h5>
+            <p className="text-white/40 text-xs leading-relaxed">
+              Los plazos estimados de venta o alquiler dependen de múltiples factores, tales como precio, ubicación, estado del inmueble y condiciones del mercado. No se garantiza un plazo fijo, sino la aplicación de una estrategia profesional orientada a resultados.
+            </p>
+          </div>
+          <div className="text-center md:text-left">
+            <h5 className="text-white/70 text-xs font-semibold mb-2">Alianzas</h5>
+            <p className="text-white/40 text-xs leading-relaxed">
+              Las alianzas con escribanías, estudios jurídicos y profesionales independientes se realizan a efectos de brindar un servicio integral. Cada profesional actúa de manera autónoma y bajo su propia responsabilidad técnica y legal.
+            </p>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-sm">

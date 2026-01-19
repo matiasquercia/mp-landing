@@ -136,6 +136,12 @@ export function About() {
                 Me capacité en una red internacional, especializándome en tasación y comercialización.
               </p>
               <p>
+                Posteriormente cursé la carrera de{' '}
+                <span className="font-semibold text-[#2F2A29]">Corredor Inmobiliario y Martillero Público</span>, 
+                obteniendo mi matrícula profesional en el Colegio Único de Corredores Inmobiliarios 
+                de la Ciudad de Buenos Aires (CUCICBA).
+              </p>
+              <p>
                 Hoy desarrollo mi actividad de manera{' '}
                 <span className="font-semibold text-[#2F2A29]">independiente</span>, 
                 con enfoque estratégico y orientado a resultados.
