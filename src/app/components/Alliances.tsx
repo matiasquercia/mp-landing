@@ -85,19 +85,6 @@ export function Alliances() {
           </p>
         </motion.div>
 
-        {/* Disclaimer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-6 text-center"
-        >
-          <p className="text-xs text-[#9CA3AF] max-w-2xl mx-auto leading-relaxed">
-            Las alianzas con escribanías, estudios jurídicos y profesionales independientes se realizan a efectos de brindar un servicio integral. 
-            Cada profesional actúa de manera autónoma y bajo su propia responsabilidad técnica y legal.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
