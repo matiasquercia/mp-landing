@@ -158,7 +158,7 @@ export function About() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-semibold text-[#2F2A29]">{cred.title}</div>
-                    <div className="text-xs text-[#6B7280] truncate">{cred.description}</div>
+                    <div className="text-xs text-[#6B7280]">{cred.description}</div>
                   </div>
                 </motion.div>
               ))}

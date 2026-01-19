@@ -81,7 +81,7 @@ export function TrustSection() {
               <h3 className="text-sm sm:text-base font-semibold text-[#2F2A29] mb-1">
                 {benefit.title}
               </h3>
-              <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed line-clamp-2">
+              <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed">
                 {benefit.description}
               </p>
             </motion.div>

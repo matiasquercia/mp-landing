@@ -124,7 +124,7 @@ export function Services() {
                 <h3 className="text-sm sm:text-base font-semibold text-[#2F2A29] mb-1">
                   {service.title}
                 </h3>
-                <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed line-clamp-2">
+                <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>
@@ -169,7 +169,7 @@ export function Services() {
                   <h4 className="text-sm font-semibold text-white mb-1">
                     {service.title}
                   </h4>
-                  <p className="text-white/60 text-xs line-clamp-2">
+                  <p className="text-white/60 text-xs">
                     {service.description}
                   </p>
                 </motion.div>
