@@ -201,7 +201,7 @@ export function Services() {
           </div>
 
           {/* Mobile/Tablet: Layout horizontal - pasos a la izquierda, contenido a la derecha */}
-          <div className="lg:hidden flex gap-4">
+          <div className="lg:hidden flex gap-6 sm:gap-8">
             {/* Columna izquierda: Timeline vertical */}
             <div className="relative flex flex-col items-center">
               {/* Línea vertical de fondo */}
