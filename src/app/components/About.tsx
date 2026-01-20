@@ -190,8 +190,9 @@ export function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.15 }}
-                    className="relative pt-20 cursor-pointer"
-                    onClick={() => setActiveTimelineIndex(isActive ? null : index)}
+                    className="relative pt-20"
+                    onMouseEnter={() => setActiveTimelineIndex(index)}
+                    onMouseLeave={() => setActiveTimelineIndex(null)}
                   >
                     {/* Timeline node - centered at top */}
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
@@ -259,8 +260,9 @@ export function About() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative pl-12 cursor-pointer"
-                  onClick={() => setActiveTimelineIndex(isActive ? null : index)}
+                  className="relative pl-12"
+                  onMouseEnter={() => setActiveTimelineIndex(index)}
+                  onMouseLeave={() => setActiveTimelineIndex(null)}
                 >
                   {/* Timeline line */}
                   {index < timeline.length - 1 && (
