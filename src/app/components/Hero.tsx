@@ -128,9 +128,9 @@ export function Hero() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-sm border border-[#D6ECBA]/50 rounded-full text-sm text-[#2F2A29] font-medium shadow-sm"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#D6ECBA]/40 backdrop-blur-sm border border-[#D6ECBA] rounded-full text-sm text-[#2F2A29] font-medium shadow-sm"
               >
-                <svg className="w-3 h-3 text-[#2F2A29]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-3.5 h-3.5 text-[#2F2A29]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                 </svg>
                 {point}
@@ -162,16 +162,19 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="grid grid-cols-3 gap-4 mt-8 lg:mt-10 pt-6 border-t border-[#2F2A29]/15 max-w-md mx-auto text-center bg-white/50 backdrop-blur-sm rounded-xl px-4 pb-4 shadow-sm"
+          className="grid grid-cols-3 gap-3 mt-8 lg:mt-10 max-w-lg mx-auto text-center"
         >
           {[
             { value: '20+', label: 'Años exp.' },
             { value: '100+', label: 'Propiedades' },
             { value: '90', label: 'Días máx.' }
           ].map((stat, index) => (
-            <div key={index}>
-              <div className="text-xl sm:text-2xl font-bold text-[#2F2A29] mb-0.5">{stat.value}</div>
-              <div className="text-xs text-[#6B7280]">{stat.label}</div>
+            <div 
+              key={index}
+              className="bg-[#2F2A29] rounded-xl px-4 py-3 shadow-lg"
+            >
+              <div className="text-xl sm:text-2xl font-bold text-[#D6ECBA] mb-0.5">{stat.value}</div>
+              <div className="text-xs text-white/70">{stat.label}</div>
             </div>
           ))}
         </motion.div>
