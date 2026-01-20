@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { TrustSection } from './components/TrustSection';
@@ -9,10 +9,16 @@ import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
-// Importar función de generación de PDF (disponible globalmente como window.generatePDF)
-import '../utils/generatePDF';
+import { generatePDF } from '../utils/generatePDF';
 
 export default function App() {
+  // Exponer la función generatePDF globalmente al montar el componente
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).generatePDF = generatePDF;
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />

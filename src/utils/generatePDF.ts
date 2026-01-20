@@ -30,6 +30,12 @@ export function generatePDF() {
 }
 
 // Hacer la función disponible globalmente para usarla desde la consola
+declare global {
+  interface Window {
+    generatePDF: () => void;
+  }
+}
+
 if (typeof window !== 'undefined') {
-  (window as any).generatePDF = generatePDF;
+  window.generatePDF = generatePDF;
 }
