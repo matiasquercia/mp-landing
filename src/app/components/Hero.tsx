@@ -59,20 +59,45 @@ export function Hero() {
             y: contentY,
           }}
         >
-          {/* Logo prominente - Grande y centrado */}
+          {/* Logo prominente - Grande y centrado con efectos */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             style={{ y: logoY }}
-            className="mb-12 lg:mb-16 flex justify-center"
+            className="mb-12 lg:mb-16 flex justify-center relative"
           >
+            {/* Glow background effect */}
+            <motion.div 
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{ 
+                scale: [1, 1.05, 1],
+                opacity: [0.5, 0.7, 0.5]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            >
+              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-[#D6ECBA]/30 rounded-full blur-3xl" />
+            </motion.div>
+            
+            {/* Logo with floating animation */}
             <motion.img 
               src={logoFull} 
               alt="Martín Pinto Propiedades" 
-              className="h-48 sm:h-64 lg:h-80 w-auto"
+              className="h-48 sm:h-64 lg:h-80 w-auto relative z-10"
+              animate={{ 
+                y: [0, -8, 0],
+              }}
+              transition={{ 
+                duration: 5, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
               style={{
-                filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))'
+                filter: 'drop-shadow(0 8px 30px rgba(0, 0, 0, 0.2)) drop-shadow(0 4px 15px rgba(0, 0, 0, 0.15))'
               }}
             />
           </motion.div>
