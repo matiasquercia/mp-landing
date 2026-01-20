@@ -40,13 +40,14 @@ export function Hero() {
           loop
           playsInline
           poster={heroPoster}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center opacity-60"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        {/* Gradient overlays for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60 lg:via-white/70 lg:to-white/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/50" />
+        {/* Gradient overlays for readability - más opaco para mejor lectura */}
+        <div className="absolute inset-0 bg-white/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/60" />
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-[90vh] lg:min-h-screen flex flex-col justify-center">
@@ -64,7 +65,10 @@ export function Hero() {
           <motion.img 
             src={logoFull} 
             alt="Martín Pinto Propiedades" 
-            className="h-40 sm:h-52 lg:h-64 w-auto drop-shadow-xl"
+            className="h-40 sm:h-52 lg:h-64 w-auto"
+            style={{
+              filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))'
+            }}
           />
         </motion.div>
 
@@ -75,6 +79,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2F2A29] mb-4 lg:mb-5 leading-[1.15] tracking-tight"
+            style={{ textShadow: '0 2px 10px rgba(255, 255, 255, 0.8)' }}
           >
             <span className="relative inline-block">
               <span className="relative z-10">Venta</span>
@@ -99,6 +104,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg text-[#4B5563] mb-5 lg:mb-6 leading-relaxed"
+            style={{ textShadow: '0 1px 8px rgba(255, 255, 255, 0.9)' }}
           >
             Asesoramiento inmobiliario con{' '}
             <span className="font-semibold text-[#2F2A29]">más de 20 años de experiencia</span>. 
@@ -122,7 +128,7 @@ export function Hero() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#D6ECBA]/30 rounded-full text-sm text-[#2F2A29] font-medium"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-sm border border-[#D6ECBA]/50 rounded-full text-sm text-[#2F2A29] font-medium shadow-sm"
               >
                 <svg className="w-3 h-3 text-[#2F2A29]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
@@ -156,7 +162,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="grid grid-cols-3 gap-4 mt-8 lg:mt-10 pt-6 border-t border-[#2F2A29]/10 max-w-md mx-auto text-center"
+          className="grid grid-cols-3 gap-4 mt-8 lg:mt-10 pt-6 border-t border-[#2F2A29]/15 max-w-md mx-auto text-center bg-white/50 backdrop-blur-sm rounded-xl px-4 pb-4 shadow-sm"
         >
           {[
             { value: '20+', label: 'Años exp.' },
