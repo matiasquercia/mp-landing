@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Award, GraduationCap, Building2, Users, Briefcase, Calendar } from 'lucide-react';
 import { motion } from 'motion/react';
-import profileImage1 from '../../assets/fotos/4.jpeg';
-import profileImage2 from '../../assets/fotos/2.jpeg';
-import profileImage3 from '../../assets/fotos/1.jpeg';
+import profileImage from '../../assets/fotos/foto-contacto.jpeg';
 
 export function About() {
   const [activeTimelineIndex, setActiveTimelineIndex] = useState<number | null>(null);
@@ -77,7 +75,7 @@ export function About() {
 
         {/* Main content grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-12 lg:mb-16">
-          {/* Image Collage */}
+          {/* Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -85,34 +83,36 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="flex gap-3 h-[350px] sm:h-[420px] lg:h-[480px]">
-              {/* Main large image - left, full height */}
-              <div className="flex-[2] relative rounded-2xl overflow-hidden shadow-xl">
-                <img
-                  src={profileImage1}
-                  alt="Martín Pinto - Corredor Inmobiliario trabajando"
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2F2A29]/20 to-transparent" />
-              </div>
-              {/* Two smaller images - right, stacked */}
-              <div className="flex-1 flex flex-col gap-3">
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-lg">
-                  <img
-                    src={profileImage2}
-                    alt="Martín Pinto profesional"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-lg">
-                  <img
-                    src={profileImage3}
-                    alt="Martín Pinto"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-              </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={profileImage}
+                alt="Martín Pinto - Corredor Inmobiliario"
+                className="w-full h-[400px] sm:h-[480px] lg:h-[520px] object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2F2A29]/30 via-transparent to-transparent" />
+              
+              {/* Decorative accent */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D6ECBA] via-[#D6ECBA]/70 to-transparent" />
             </div>
+            
+            {/* Floating credential badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="absolute -bottom-4 -right-4 lg:-right-6 bg-white rounded-xl shadow-xl p-4 border border-[#E5E7EB]/50"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-[#D6ECBA]/30 rounded-lg flex items-center justify-center">
+                  <Award className="w-5 h-5 text-[#2F2A29]" />
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-[#2F2A29]">CUCICBA N° 9356</div>
+                  <div className="text-xs text-[#6B7280]">Matrícula profesional</div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Content */}
