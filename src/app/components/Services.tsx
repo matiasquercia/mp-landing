@@ -114,8 +114,8 @@ export function Services() {
   const progressPercentage = ((activeStep + 1) / processSteps.length) * 100;
 
   return (
-    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden overflow-x-hidden">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -299,28 +299,26 @@ export function Services() {
               </AnimatePresence>
 
               {/* Botones de navegación laterales (solo íconos) - sobresalen la mitad, fuera del card */}
-              <button
-                onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
-                disabled={activeStep === 0}
-                className={`absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 flex items-center z-10 ${
-                  activeStep === 0 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
-                }`}
-              >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29] rotate-180" />
-                </div>
-              </button>
-              <button
-                onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
-                disabled={activeStep === processSteps.length - 1}
-                className={`absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 flex items-center z-10 ${
-                  activeStep === processSteps.length - 1 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
-                }`}
-              >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29]" />
-                </div>
-              </button>
+              {activeStep > 0 && (
+                <button
+                  onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
+                  className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 flex items-center z-10 opacity-100 hover:opacity-80"
+                >
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29] rotate-180" />
+                  </div>
+                </button>
+              )}
+              {activeStep < processSteps.length - 1 && (
+                <button
+                  onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
+                  className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 flex items-center z-10 opacity-100 hover:opacity-80"
+                >
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29]" />
+                  </div>
+                </button>
+              )}
             </div>
           </div>
 
@@ -380,28 +378,26 @@ export function Services() {
             </AnimatePresence>
 
             {/* Botones laterales de navegación (desktop) - sobresalen la mitad, fuera del card */}
-            <button
-              onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
-              disabled={activeStep === 0}
-              className={`absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 flex items-center z-10 ${
-                activeStep === 0 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
-              }`}
-            >
-              <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                <ChevronRight className="w-5 h-5 text-[#2F2A29] rotate-180" />
-              </div>
-            </button>
-            <button
-              onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
-              disabled={activeStep === processSteps.length - 1}
-              className={`absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 flex items-center z-10 ${
-                activeStep === processSteps.length - 1 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
-              }`}
-            >
-              <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                <ChevronRight className="w-5 h-5 text-[#2F2A29]" />
-              </div>
-            </button>
+            {activeStep > 0 && (
+              <button
+                onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
+                className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 flex items-center z-10 opacity-100 hover:opacity-80"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                  <ChevronRight className="w-5 h-5 text-[#2F2A29] rotate-180" />
+                </div>
+              </button>
+            )}
+            {activeStep < processSteps.length - 1 && (
+              <button
+                onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
+                className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 flex items-center z-10 opacity-100 hover:opacity-80"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                  <ChevronRight className="w-5 h-5 text-[#2F2A29]" />
+                </div>
+              </button>
+            )}
           </div>
         </motion.div>
 
