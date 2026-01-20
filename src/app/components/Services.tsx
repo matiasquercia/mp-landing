@@ -55,8 +55,8 @@ export function Services() {
     },
     {
       icon: Calendar,
-      title: 'Alquileres temporarios',
-      description: 'Propiedades amobladas para estadías cortas'
+      title: 'Alquileres amoblados y equipados',
+      description: 'Con fines específicos (de 6 meses a 1 año renovables)'
     },
     {
       icon: Shield,

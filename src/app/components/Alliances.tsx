@@ -1,26 +1,33 @@
 import React from 'react';
-import { Handshake, Scale, Gavel, Palette } from 'lucide-react';
+import { Handshake } from 'lucide-react';
 import { motion } from 'motion/react';
+
+// Imágenes representativas de cada profesión
+const allyImages = {
+  escribania: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+  juridico: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80',
+  interiorismo: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80'
+};
 
 export function Alliances() {
   const allies = [
     {
-      icon: Scale,
+      image: allyImages.escribania,
       title: 'Escribanía asociada',
       description: 'Para garantizar seguridad jurídica y agilidad en las operaciones.',
-      color: 'from-blue-100/60 to-blue-50/40'
+      accent: '#3B82F6'
     },
     {
-      icon: Gavel,
+      image: allyImages.juridico,
       title: 'Estudio jurídico especializado',
       description: 'Especializado en sucesiones complejas, acompañando procesos patrimoniales que requieren un abordaje legal específico.',
-      color: 'from-emerald-100/60 to-emerald-50/40'
+      accent: '#10B981'
     },
     {
-      icon: Palette,
+      image: allyImages.interiorismo,
       title: 'Diseñador/a de interiores',
       description: 'Orientado a la optimización y puesta en valor de propiedades destinadas a alquiler temporario, mejorando su rentabilidad y atractivo comercial.',
-      color: 'from-purple-100/60 to-purple-50/40'
+      accent: '#8B5CF6'
     }
   ];
 
@@ -47,27 +54,43 @@ export function Alliances() {
           </p>
         </motion.div>
 
-        {/* Allies Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+        {/* Allies Grid - Card with Image */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {allies.map((ally, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-white rounded-2xl p-5 shadow-lg shadow-black/5 hover:shadow-xl transition-all duration-300 border border-[#E5E7EB]/50 group"
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-[#E5E7EB]/50"
             >
-              <div className={`w-12 h-12 bg-gradient-to-br ${ally.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm`}>
-                <ally.icon className="w-6 h-6 text-[#2F2A29]" />
+              {/* Image container */}
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={ally.image} 
+                  alt={ally.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                
+                {/* Accent bar */}
+                <div 
+                  className="absolute bottom-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-1.5"
+                  style={{ backgroundColor: ally.accent }}
+                />
               </div>
-              <h3 className="text-base font-semibold text-[#2F2A29] mb-2">
-                {ally.title}
-              </h3>
-              <p className="text-[#6B7280] text-sm leading-relaxed">
-                {ally.description}
-              </p>
+              
+              {/* Content */}
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-[#2F2A29] mb-2 group-hover:text-[#2F2A29] transition-colors">
+                  {ally.title}
+                </h3>
+                <p className="text-[#6B7280] text-sm leading-relaxed">
+                  {ally.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -78,7 +101,7 @@ export function Alliances() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 lg:mt-10 text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-[#E5E7EB]/50"
+          className="mt-10 lg:mt-12 text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-[#E5E7EB]/50"
         >
           <p className="text-sm sm:text-base text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
             Estas alianzas permiten ofrecer soluciones completas, cuidando cada detalle del proceso y brindando tranquilidad al propietario.

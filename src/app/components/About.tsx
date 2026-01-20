@@ -16,7 +16,7 @@ export function About() {
       highlight: 'landinargentina.com'
     },
     {
-      year: '2010s',
+      year: '2010',
       title: 'Transición a broker inmobiliario',
       description: 'Inicio en venta de propiedades, capacitación en red inmobiliaria internacional especializada en tasación y comercialización.',
       icon: Building2,
