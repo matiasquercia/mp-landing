@@ -261,8 +261,8 @@ export function Services() {
               </div>
             </div>
 
-            {/* Columna derecha: Contenido del paso activo */}
-            <div className="flex-1">
+            {/* Columna derecha: Contenido del paso activo - altura fija */}
+            <div className="flex-1 min-h-[420px] sm:min-h-[380px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
@@ -270,10 +270,10 @@ export function Services() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E5E7EB]/50"
+                  className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E5E7EB]/50 h-full flex flex-col"
                 >
-                  {/* Image */}
-                  <div className="relative aspect-[16/9]">
+                  {/* Image - altura fija */}
+                  <div className="relative h-36 sm:h-40 flex-shrink-0">
                     <img 
                       src={processSteps[activeStep].image} 
                       alt={processSteps[activeStep].title}
@@ -282,50 +282,52 @@ export function Services() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                     
                     {/* Título sobre la imagen */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                      <h3 className="text-base sm:text-lg font-bold text-white">
                         {processSteps[activeStep].title}
                       </h3>
                     </div>
                   </div>
                   
-                  {/* Content */}
-                  <div className="p-4">
-                    <p className="text-[#6B7280] text-sm leading-relaxed mb-3">
-                      {processSteps[activeStep].detail}
-                    </p>
-                    <p className="text-xs text-[#9CA3AF] italic border-l-2 border-[#D6ECBA] pl-3">
-                      {processSteps[activeStep].description}
-                    </p>
+                  {/* Content - flex-1 para ocupar el resto */}
+                  <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                    <div className="flex-1">
+                      <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed mb-2 sm:mb-3">
+                        {processSteps[activeStep].detail}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-[#9CA3AF] italic border-l-2 border-[#D6ECBA] pl-2 sm:pl-3">
+                        {processSteps[activeStep].description}
+                      </p>
+                    </div>
                     
-                    {/* Navigation arrows */}
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#E5E7EB]/50">
+                    {/* Navigation arrows - siempre al fondo */}
+                    <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#E5E7EB]/50">
                       <button
                         onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
                         disabled={activeStep === 0}
-                        className={`p-2 rounded-full transition-all ${
+                        className={`p-1.5 sm:p-2 rounded-full transition-all ${
                           activeStep === 0 
                             ? 'text-[#D1D5DB] cursor-not-allowed' 
                             : 'text-[#6B7280] hover:bg-[#F3F4F6]'
                         }`}
                       >
-                        <ChevronRight className="w-5 h-5 rotate-180" />
+                        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 rotate-180" />
                       </button>
                       
-                      <span className="text-xs text-[#9CA3AF]">
+                      <span className="text-[10px] sm:text-xs text-[#9CA3AF]">
                         {activeStep + 1} / {processSteps.length}
                       </span>
                       
                       <button
                         onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
                         disabled={activeStep === processSteps.length - 1}
-                        className={`p-2 rounded-full transition-all ${
+                        className={`p-1.5 sm:p-2 rounded-full transition-all ${
                           activeStep === processSteps.length - 1 
                             ? 'text-[#D1D5DB] cursor-not-allowed' 
                             : 'text-[#6B7280] hover:bg-[#F3F4F6]'
                         }`}
                       >
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                       </button>
                     </div>
                   </div>
