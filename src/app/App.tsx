@@ -9,6 +9,8 @@ import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
+// Importar función de generación de PDF (disponible globalmente como window.generatePDF)
+import '../utils/generatePDF';
 
 export default function App() {
   return (
