@@ -157,26 +157,25 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Stats - Bottom - Compact and Centered */}
+        {/* Stats - Bottom - Minimalist */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="grid grid-cols-3 gap-3 mt-8 lg:mt-10 max-w-lg mx-auto text-center"
+          className="mt-10 lg:mt-12 pt-6 border-t border-[#2F2A29]/20 max-w-md mx-auto"
         >
-          {[
-            { value: '20+', label: 'Años exp.' },
-            { value: '100+', label: 'Propiedades' },
-            { value: '90', label: 'Días máx.' }
-          ].map((stat, index) => (
-            <div 
-              key={index}
-              className="bg-[#2F2A29] rounded-xl px-4 py-3 shadow-lg"
-            >
-              <div className="text-xl sm:text-2xl font-bold text-[#D6ECBA] mb-0.5">{stat.value}</div>
-              <div className="text-xs text-white/70">{stat.label}</div>
-            </div>
-          ))}
+          <div className="grid grid-cols-3 gap-6 text-center">
+            {[
+              { value: '20+', label: 'Años exp.' },
+              { value: '100+', label: 'Propiedades' },
+              { value: '90', label: 'Días máx.' }
+            ].map((stat, index) => (
+              <div key={index}>
+                <div className="text-2xl sm:text-3xl font-bold text-[#2F2A29]">{stat.value}</div>
+                <div className="text-xs text-[#6B7280] mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
