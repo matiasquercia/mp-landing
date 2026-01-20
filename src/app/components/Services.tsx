@@ -29,7 +29,7 @@ export function Services() {
       shortTitle: 'Tasación',
       description: 'Respaldada por estudio de mercado inmobiliario en CABA.',
       detail: 'Análisis exhaustivo considerando 12 variables de ponderación para determinar el precio óptimo de tu propiedad.',
-      number: '01'
+      number: '1'
     },
     {
       icon: BarChart3,
@@ -38,7 +38,7 @@ export function Services() {
       shortTitle: 'Estrategia',
       description: 'Comercialización adaptada al tipo de propiedad y público objetivo.',
       detail: 'Definimos juntos la estrategia de venta o alquiler más efectiva según las características de tu inmueble.',
-      number: '02'
+      number: '2'
     },
     {
       icon: Camera,
@@ -47,7 +47,7 @@ export function Services() {
       shortTitle: 'Producción',
       description: 'Fotografía, video recorrido y material comercial profesional.',
       detail: 'Creamos contenido visual de alta calidad que destaca los mejores atributos de tu propiedad.',
-      number: '03'
+      number: '3'
     },
     {
       icon: Globe,
@@ -56,7 +56,7 @@ export function Services() {
       shortTitle: 'Publicación',
       description: 'En múltiples portales inmobiliarios líderes.',
       detail: 'Tu propiedad visible en los principales portales y redes, llegando al público objetivo correcto.',
-      number: '04'
+      number: '4'
     },
     {
       icon: Sparkles,
@@ -65,7 +65,7 @@ export function Services() {
       shortTitle: 'Seguimiento',
       description: 'Reporte semanal sobre evolución de publicaciones y consultas.',
       detail: 'Te mantengo informado con reportes detallados sobre visitas, consultas y feedback del mercado.',
-      number: '05'
+      number: '5'
     },
     {
       icon: Handshake,
@@ -74,7 +74,7 @@ export function Services() {
       shortTitle: 'Cierre',
       description: 'Desde la reserva hasta el cierre de la operación.',
       detail: 'Te acompaño en cada etapa: negociación, documentación y escrituración hasta la entrega de llaves.',
-      number: '06'
+      number: '6'
     }
   ];
 
@@ -250,11 +250,6 @@ export function Services() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
-                  
-                  {/* Step number overlay */}
-                  <div className="absolute top-4 left-4 bg-[#D6ECBA] text-[#2F2A29] px-3 py-1.5 rounded-lg">
-                    <span className="text-sm font-bold">Paso {processSteps[activeStep].number}</span>
-                  </div>
                 </div>
                 
                 {/* Content */}
