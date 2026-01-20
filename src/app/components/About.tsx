@@ -87,32 +87,13 @@ export function About() {
               <img
                 src={profileImage}
                 alt="Martín Pinto - Corredor Inmobiliario"
-                className="w-full h-[400px] sm:h-[480px] lg:h-[520px] object-cover object-[center_25%]"
+                className="w-full h-[400px] sm:h-[480px] lg:h-[520px] object-cover object-[center_35%]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2F2A29]/30 via-transparent to-transparent" />
               
               {/* Decorative accent */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D6ECBA] via-[#D6ECBA]/70 to-transparent" />
             </div>
-            
-            {/* Floating credential badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="absolute -bottom-4 -right-4 lg:-right-6 bg-white rounded-xl shadow-xl p-4 border border-[#E5E7EB]/50"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#D6ECBA]/30 rounded-lg flex items-center justify-center">
-                  <Award className="w-5 h-5 text-[#2F2A29]" />
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-[#2F2A29]">CUCICBA N° 9356</div>
-                  <div className="text-xs text-[#6B7280]">Matrícula profesional</div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Content */}
