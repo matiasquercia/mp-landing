@@ -12,8 +12,8 @@ const stepImages = {
   produccion: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
   // Publicación: laptop con publicación, trabajo digital
   publicacion: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-  // Seguimiento: persona hablando por teléfono o comunicándose
-  seguimiento: 'https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=800&q=80',
+  // Seguimiento: comunicación digital, videollamada o chat
+  seguimiento: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&w=800&q=80',
   // Cierre: apretón de manos, acuerdo
   cierre: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80'
 };
@@ -258,90 +258,61 @@ export function Services() {
                 </div>
                 
                 {/* Content */}
-                <div className="flex-1 p-6 sm:p-8 flex flex-col justify-center">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-2xl sm:text-3xl font-bold text-[#2F2A29] mb-4">
-                        {processSteps[activeStep].title}
-                      </h3>
-                      <p className="text-[#6B7280] text-base sm:text-lg leading-relaxed mb-4">
-                        {processSteps[activeStep].detail}
-                      </p>
-                      <p className="text-sm text-[#9CA3AF] italic border-l-2 border-[#D6ECBA] pl-4">
-                        {processSteps[activeStep].description}
-                      </p>
-                    </div>
-                    
-                    {/* Navigation arrows */}
-                    <div className="hidden lg:flex flex-col gap-3">
-                      <motion.button
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
-                        disabled={activeStep === 0}
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all shadow-md ${
-                          activeStep === 0 
-                            ? 'bg-[#F3F4F6] text-[#9CA3AF] cursor-not-allowed' 
-                            : 'bg-[#2F2A29] text-white hover:bg-[#2F2A29]/80 hover:shadow-lg'
-                        }`}
-                      >
-                        <ChevronRight className="w-6 h-6 rotate-180" />
-                      </motion.button>
-                      <motion.button
-                        whileHover={{ scale: 1.1, y: 2 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
-                        disabled={activeStep === processSteps.length - 1}
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all shadow-md ${
-                          activeStep === processSteps.length - 1 
-                            ? 'bg-[#F3F4F6] text-[#9CA3AF] cursor-not-allowed' 
-                            : 'bg-[#D6ECBA] text-[#2F2A29] hover:bg-[#D6ECBA]/80 hover:shadow-lg'
-                        }`}
-                      >
-                        <ChevronRight className="w-6 h-6" />
-                      </motion.button>
-                    </div>
+                <div className="flex-1 p-6 sm:p-8 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#2F2A29] mb-4">
+                      {processSteps[activeStep].title}
+                    </h3>
+                    <p className="text-[#6B7280] text-base sm:text-lg leading-relaxed mb-4">
+                      {processSteps[activeStep].detail}
+                    </p>
+                    <p className="text-sm text-[#9CA3AF] italic border-l-2 border-[#D6ECBA] pl-4">
+                      {processSteps[activeStep].description}
+                    </p>
                   </div>
                   
-                  {/* Step dots - Mobile navigation */}
-                  <div className="flex items-center justify-between mt-6 pt-6 border-t border-[#E5E7EB]/50 lg:hidden">
-                    <motion.button
-                      whileTap={{ scale: 0.9 }}
+                  {/* Navigation - Minimalista */}
+                  <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#E5E7EB]/50">
+                    <button
                       onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
                       disabled={activeStep === 0}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                      className={`flex items-center gap-2 text-sm font-medium transition-all ${
                         activeStep === 0 
-                          ? 'bg-[#F3F4F6] text-[#9CA3AF] cursor-not-allowed' 
-                          : 'bg-[#2F2A29] text-white'
+                          ? 'text-[#D1D5DB] cursor-not-allowed' 
+                          : 'text-[#6B7280] hover:text-[#2F2A29]'
                       }`}
                     >
-                      Anterior
-                    </motion.button>
-                    <div className="flex gap-1.5">
+                      <ChevronRight className="w-4 h-4 rotate-180" />
+                      <span className="hidden sm:inline">Anterior</span>
+                    </button>
+                    
+                    {/* Dots */}
+                    <div className="flex gap-2">
                       {processSteps.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => setActiveStep(index)}
                           className={`transition-all duration-300 rounded-full ${
                             index === activeStep 
-                              ? 'w-6 h-2 bg-[#2F2A29]' 
-                              : 'w-2 h-2 bg-[#E5E7EB]'
+                              ? 'w-8 h-2 bg-[#2F2A29]' 
+                              : 'w-2 h-2 bg-[#E5E7EB] hover:bg-[#D6ECBA]'
                           }`}
                         />
                       ))}
                     </div>
-                    <motion.button
-                      whileTap={{ scale: 0.9 }}
+                    
+                    <button
                       onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
                       disabled={activeStep === processSteps.length - 1}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                      className={`flex items-center gap-2 text-sm font-medium transition-all ${
                         activeStep === processSteps.length - 1 
-                          ? 'bg-[#F3F4F6] text-[#9CA3AF] cursor-not-allowed' 
-                          : 'bg-[#D6ECBA] text-[#2F2A29]'
+                          ? 'text-[#D1D5DB] cursor-not-allowed' 
+                          : 'text-[#6B7280] hover:text-[#2F2A29]'
                       }`}
                     >
-                      Siguiente
-                    </motion.button>
+                      <span className="hidden sm:inline">Siguiente</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
               </div>
