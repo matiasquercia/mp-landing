@@ -12,9 +12,13 @@ const heroPoster = 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849
 export function Hero() {
   const { scrollY } = useScroll();
   
-  // Transform logo: starts centered and big, moves to header position
-  const logoOpacity = useTransform(scrollY, [200, 350], [1, 0]);
-  const logoY = useTransform(scrollY, [0, 300], [0, -80]);
+  // Parallax transforms for all hero content
+  const contentOpacity = useTransform(scrollY, [100, 400], [1, 0]);
+  const contentY = useTransform(scrollY, [0, 400], [0, -100]);
+  const contentScale = useTransform(scrollY, [0, 400], [1, 0.95]);
+  
+  // Logo moves slightly faster for depth effect
+  const logoY = useTransform(scrollY, [0, 300], [0, -120]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -51,50 +55,33 @@ export function Hero() {
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-[90vh] lg:min-h-screen flex flex-col justify-center">
-        {/* Logo prominente - Grande y centrado con texto */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          style={{ 
-            opacity: logoOpacity,
-            y: logoY,
+        {/* All Hero Content with Parallax */}
+        <motion.div
+          style={{
+            opacity: contentOpacity,
+            y: contentY,
+            scale: contentScale,
           }}
-          className="mb-10 lg:mb-14 flex flex-col items-center"
         >
-          <motion.img 
-            src={logoFull} 
-            alt="Martín Pinto Propiedades" 
-            className="h-32 sm:h-40 lg:h-48 w-auto"
-            style={{
-              filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))'
-            }}
-          />
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-4 text-center"
+          {/* Logo prominente - Grande y centrado */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ y: logoY }}
+            className="mb-12 lg:mb-16 flex justify-center"
           >
-            <h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.3em] text-[#2F2A29] uppercase"
-              style={{ 
-                textShadow: '0 2px 10px rgba(255, 255, 255, 0.8)',
-                fontFamily: 'system-ui, -apple-system, sans-serif'
+            <motion.img 
+              src={logoFull} 
+              alt="Martín Pinto Propiedades" 
+              className="h-40 sm:h-52 lg:h-64 w-auto"
+              style={{
+                filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))'
               }}
-            >
-              Martín Pinto
-            </h2>
-            <p 
-              className="text-sm sm:text-base lg:text-lg tracking-[0.15em] sm:tracking-[0.2em] text-[#2F2A29]/80 uppercase mt-1"
-              style={{ textShadow: '0 1px 8px rgba(255, 255, 255, 0.9)' }}
-            >
-              Propiedades
-            </p>
+            />
           </motion.div>
-        </motion.div>
 
-        <div className="max-w-xl lg:max-w-2xl mx-auto text-center">
+          <div className="max-w-xl lg:max-w-2xl mx-auto text-center">
           {/* Main Title */}
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
@@ -179,25 +166,26 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Stats - Bottom - Minimalist */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="mt-10 lg:mt-12 pt-6 border-t border-[#2F2A29]/20 max-w-md mx-auto"
-        >
-          <div className="grid grid-cols-3 gap-6 text-center">
-            {[
-              { value: '20+', label: 'Años exp.' },
-              { value: '100+', label: 'Propiedades' },
-              { value: '90', label: 'Días máx.' }
-            ].map((stat, index) => (
-              <div key={index}>
-                <div className="text-2xl sm:text-3xl font-bold text-[#2F2A29]">{stat.value}</div>
-                <div className="text-xs text-[#6B7280] mt-0.5">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+          {/* Stats - Bottom - Minimalist */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mt-10 lg:mt-12 pt-6 border-t border-[#2F2A29]/20 max-w-md mx-auto"
+          >
+            <div className="grid grid-cols-3 gap-6 text-center">
+              {[
+                { value: '20+', label: 'Años exp.' },
+                { value: '100+', label: 'Propiedades' },
+                { value: '90', label: 'Días máx.' }
+              ].map((stat, index) => (
+                <div key={index}>
+                  <div className="text-2xl sm:text-3xl font-bold text-[#2F2A29]">{stat.value}</div>
+                  <div className="text-xs text-[#6B7280] mt-0.5">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
