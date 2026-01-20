@@ -70,7 +70,7 @@ export function Hero() {
             <motion.img 
               src={logoFull} 
               alt="Martín Pinto Propiedades" 
-              className="h-40 sm:h-52 lg:h-64 w-auto"
+              className="h-48 sm:h-64 lg:h-80 w-auto"
               style={{
                 filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))'
               }}
@@ -103,19 +103,6 @@ export function Hero() {
             en CABA
           </motion.h1>
           
-          {/* Subtitle */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#2F2A29]/80 mb-5 lg:mb-6 leading-relaxed font-medium"
-            style={{ textShadow: '0 1px 12px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8)' }}
-          >
-            Asesoramiento inmobiliario con{' '}
-            <span className="font-bold text-[#2F2A29]">más de 20 años de experiencia</span>. 
-            Te acompaño hasta el cierre exitoso de tu operación.
-          </motion.p>
-
           {/* Key points - Compact */}
           <motion.div 
             initial={{ opacity: 0 }}
