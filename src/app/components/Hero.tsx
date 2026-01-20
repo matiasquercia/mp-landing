@@ -42,14 +42,14 @@ export function Hero() {
           loop
           playsInline
           poster={heroPoster}
-          className="w-full h-full object-cover object-center opacity-60"
+          className="w-full h-full object-cover object-center opacity-80"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        {/* Gradient overlays for readability - más opaco para mejor lectura */}
-        <div className="absolute inset-0 bg-white/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/60" />
+        {/* Gradient overlays for readability - balance entre video visible y texto legible */}
+        <div className="absolute inset-0 bg-white/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/40" />
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-[90vh] lg:min-h-screen flex flex-col justify-center">
