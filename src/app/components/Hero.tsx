@@ -59,7 +59,7 @@ export function Hero() {
             y: contentY,
           }}
         >
-          {/* Logo prominente - Grande y centrado, sin animaciones pero con buena lectura sobre el video */}
+          {/* Logo prominente - Grande y centrado, flotando sobre el video */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -67,13 +67,13 @@ export function Hero() {
             style={{ y: logoY }}
             className="mb-10 lg:mb-14 flex justify-center"
           >
-            <div className="relative">
-              {/* Placa semitransparente para separar del video */}
-              <div className="absolute inset-2 sm:inset-3 rounded-3xl bg-white/85 shadow-[0_18px_45px_rgba(0,0,0,0.18)]" />
+            <div className="relative inline-block">
+              {/* Halo suave para separar del video sin placa sólida */}
+              <div className="absolute inset-0 scale-110 rounded-full bg-white/30 blur-2xl pointer-events-none" />
               <img 
                 src={logoFull} 
                 alt="Martín Pinto Propiedades" 
-                className="relative z-10 h-48 sm:h-64 lg:h-80 w-auto"
+                className="relative z-10 h-48 sm:h-64 lg:h-80 w-auto drop-shadow-[0_18px_40px_rgba(0,0,0,0.35)]"
               />
             </div>
           </motion.div>
