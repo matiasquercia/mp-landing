@@ -253,7 +253,7 @@ export function Services() {
             </div>
 
             {/* Columna derecha: Contenido del paso activo - altura fija */}
-            <div className="flex-1 h-[480px] sm:h-[500px]">
+            <div className="flex-1 h-[480px] sm:h-[500px] relative">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
@@ -295,73 +295,10 @@ export function Services() {
                       </span>
                     </div>
                   </div>
-
-                  {/* Botones de navegación laterales (solo íconos) - sobresalen la mitad */}
-                  <button
-                    onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
-                    disabled={activeStep === 0}
-                    className={`absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 flex items-center z-10 ${
-                      activeStep === 0 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
-                    }`}
-                  >
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                      <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29] rotate-180" />
-                    </div>
-                  </button>
-                  <button
-                    onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
-                    disabled={activeStep === processSteps.length - 1}
-                    className={`absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 flex items-center z-10 ${
-                      activeStep === processSteps.length - 1 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
-                    }`}
-                  >
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                      <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29]" />
-                    </div>
-                  </button>
                 </motion.div>
               </AnimatePresence>
-            </div>
-          </div>
 
-          {/* Desktop: Card con imagen y contenido */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeStep}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.4 }}
-              className="hidden lg:block relative bg-white rounded-2xl overflow-hidden shadow-xl border border-[#E5E7EB]/50"
-            >
-              <div className="flex flex-row">
-                {/* Image */}
-                <div className="relative w-2/5 min-h-[320px]">
-                  <img 
-                    src={processSteps[activeStep].image} 
-                    alt={processSteps[activeStep].title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
-                </div>
-                
-                {/* Content */}
-                <div className="flex-1 p-8 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-3xl font-bold text-[#2F2A29] mb-4">
-                      {processSteps[activeStep].title}
-                </h3>
-                    <p className="text-[#6B7280] text-lg leading-relaxed mb-4">
-                      {processSteps[activeStep].detail}
-                    </p>
-                    <p className="text-sm text-[#9CA3AF] italic border-l-2 border-[#D6ECBA] pl-4">
-                      {processSteps[activeStep].description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Botones laterales de navegación (desktop) - sobresalen la mitad */}
+              {/* Botones de navegación laterales (solo íconos) - sobresalen la mitad, fuera del card */}
               <button
                 onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
                 disabled={activeStep === 0}
@@ -369,8 +306,8 @@ export function Services() {
                   activeStep === 0 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
                 }`}
               >
-                <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                  <ChevronRight className="w-5 h-5 text-[#2F2A29] rotate-180" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29] rotate-180" />
                 </div>
               </button>
               <button
@@ -380,27 +317,92 @@ export function Services() {
                   activeStep === processSteps.length - 1 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
                 }`}
               >
-                <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
-                  <ChevronRight className="w-5 h-5 text-[#2F2A29]" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29]" />
                 </div>
               </button>
+            </div>
+          </div>
 
-              {/* Indicadores de paso (puntos) */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {processSteps.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveStep(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      index === activeStep 
-                        ? 'w-8 h-2 bg-[#2F2A29]' 
-                        : 'w-2 h-2 bg-[#E5E7EB] hover:bg-[#D6ECBA]'
-                    }`}
-                  />
-                ))}
+          {/* Desktop: Card con imagen y contenido */}
+          <div className="hidden lg:block relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.4 }}
+                className="relative bg-white rounded-2xl overflow-hidden shadow-xl border border-[#E5E7EB]/50"
+              >
+                <div className="flex flex-row">
+                  {/* Image */}
+                  <div className="relative w-2/5 min-h-[320px]">
+                    <img 
+                      src={processSteps[activeStep].image} 
+                      alt={processSteps[activeStep].title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 p-8 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-3xl font-bold text-[#2F2A29] mb-4">
+                        {processSteps[activeStep].title}
+                  </h3>
+                      <p className="text-[#6B7280] text-lg leading-relaxed mb-4">
+                        {processSteps[activeStep].detail}
+                      </p>
+                      <p className="text-sm text-[#9CA3AF] italic border-l-2 border-[#D6ECBA] pl-4">
+                        {processSteps[activeStep].description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Indicadores de paso (puntos) */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                  {processSteps.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveStep(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === activeStep 
+                          ? 'w-8 h-2 bg-[#2F2A29]' 
+                          : 'w-2 h-2 bg-[#E5E7EB] hover:bg-[#D6ECBA]'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Botones laterales de navegación (desktop) - sobresalen la mitad, fuera del card */}
+            <button
+              onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
+              disabled={activeStep === 0}
+              className={`absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 flex items-center z-10 ${
+                activeStep === 0 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
+              }`}
+            >
+              <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                <ChevronRight className="w-5 h-5 text-[#2F2A29] rotate-180" />
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </button>
+            <button
+              onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
+              disabled={activeStep === processSteps.length - 1}
+              className={`absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 flex items-center z-10 ${
+                activeStep === processSteps.length - 1 ? 'opacity-40 cursor-not-allowed' : 'opacity-100 hover:opacity-80'
+              }`}
+            >
+              <div className="w-10 h-10 rounded-full bg-[#D6ECBA] shadow-lg flex items-center justify-center border-2 border-white">
+                <ChevronRight className="w-5 h-5 text-[#2F2A29]" />
+              </div>
+            </button>
+          </div>
         </motion.div>
 
         {/* Additional Services */}
