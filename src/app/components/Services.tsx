@@ -262,7 +262,7 @@ export function Services() {
             </div>
 
             {/* Columna derecha: Contenido del paso activo - altura fija */}
-            <div className="flex-1 h-[400px] sm:h-[420px]">
+            <div className="flex-1 h-[480px] sm:h-[500px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
@@ -272,57 +272,61 @@ export function Services() {
                   transition={{ duration: 0.3 }}
                   className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E5E7EB]/50 h-full flex flex-col"
                 >
-                  {/* Image - ocupa la mayor parte */}
-                  <div className="relative flex-1 min-h-0">
+                  {/* Image - ocupa ~55% del espacio */}
+                  <div className="relative h-[55%] flex-shrink-0">
                     <img 
                       src={processSteps[activeStep].image} 
                       alt={processSteps[activeStep].title}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    
-                    {/* Título y descripción sobre la imagen */}
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                      <h3 className="text-base sm:text-lg font-bold text-white mb-1">
-                        {processSteps[activeStep].title}
-                      </h3>
-                      <p className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-2">
-                        {processSteps[activeStep].detail}
-                      </p>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                   </div>
                   
-                  {/* Footer compacto con navegación */}
-                  <div className="p-3 flex items-center justify-between border-t border-[#E5E7EB]/50 bg-white">
-                    <button
-                      onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
-                      disabled={activeStep === 0}
-                      className={`p-1.5 rounded-full transition-all ${
-                        activeStep === 0 
-                          ? 'text-[#D1D5DB] cursor-not-allowed' 
-                          : 'text-[#6B7280] hover:bg-[#F3F4F6]'
-                      }`}
-                    >
-                      <ChevronRight className="w-4 h-4 rotate-180" />
-                    </button>
+                  {/* Content - espacio propio para textos */}
+                  <div className="flex-1 p-3 sm:p-4 flex flex-col overflow-hidden">
+                    <h3 className="text-base sm:text-lg font-bold text-[#2F2A29] mb-2 flex-shrink-0">
+                      {processSteps[activeStep].title}
+                    </h3>
+                    <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed mb-2 flex-shrink-0">
+                      {processSteps[activeStep].detail}
+                    </p>
+                    <p className="text-[10px] sm:text-xs text-[#9CA3AF] italic border-l-2 border-[#D6ECBA] pl-2 flex-shrink-0">
+                      {processSteps[activeStep].description}
+                    </p>
                     
-                    <div className="flex items-center gap-2">
+                    {/* Spacer */}
+                    <div className="flex-1" />
+                    
+                    {/* Navigation */}
+                    <div className="flex items-center justify-between pt-2 border-t border-[#E5E7EB]/50 flex-shrink-0">
+                      <button
+                        onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
+                        disabled={activeStep === 0}
+                        className={`p-1.5 rounded-full transition-all ${
+                          activeStep === 0 
+                            ? 'text-[#D1D5DB] cursor-not-allowed' 
+                            : 'text-[#6B7280] hover:bg-[#F3F4F6]'
+                        }`}
+                      >
+                        <ChevronRight className="w-4 h-4 rotate-180" />
+                      </button>
+                      
                       <span className="text-[10px] text-[#9CA3AF]">
                         {activeStep + 1} / {processSteps.length}
                       </span>
+                      
+                      <button
+                        onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
+                        disabled={activeStep === processSteps.length - 1}
+                        className={`p-1.5 rounded-full transition-all ${
+                          activeStep === processSteps.length - 1 
+                            ? 'text-[#D1D5DB] cursor-not-allowed' 
+                            : 'text-[#6B7280] hover:bg-[#F3F4F6]'
+                        }`}
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
                     </div>
-                    
-                    <button
-                      onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
-                      disabled={activeStep === processSteps.length - 1}
-                      className={`p-1.5 rounded-full transition-all ${
-                        activeStep === processSteps.length - 1 
-                          ? 'text-[#D1D5DB] cursor-not-allowed' 
-                          : 'text-[#6B7280] hover:bg-[#F3F4F6]'
-                      }`}
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
