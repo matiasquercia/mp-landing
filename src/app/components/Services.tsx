@@ -12,8 +12,8 @@ const stepImages = {
   produccion: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
   // Publicación: laptop con publicación, trabajo digital
   publicacion: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-  // Seguimiento: comunicación digital, videollamada o chat
-  seguimiento: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&w=800&q=80',
+  // Seguimiento: enviando reportes, informando, dashboard con métricas
+  seguimiento: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
   // Cierre: apretón de manos, acuerdo
   cierre: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80'
 };
