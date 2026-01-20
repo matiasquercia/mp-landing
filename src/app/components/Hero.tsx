@@ -51,7 +51,7 @@ export function Hero() {
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-[90vh] lg:min-h-screen flex flex-col justify-center">
-        {/* Logo prominente - Grande y centrado */}
+        {/* Logo prominente - Grande y centrado con texto */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -60,16 +60,38 @@ export function Hero() {
             opacity: logoOpacity,
             y: logoY,
           }}
-          className="mb-12 lg:mb-16 flex justify-center"
+          className="mb-10 lg:mb-14 flex flex-col items-center"
         >
           <motion.img 
             src={logoFull} 
             alt="Martín Pinto Propiedades" 
-            className="h-40 sm:h-52 lg:h-64 w-auto"
+            className="h-32 sm:h-40 lg:h-48 w-auto"
             style={{
               filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))'
             }}
           />
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-4 text-center"
+          >
+            <h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.3em] text-[#2F2A29] uppercase"
+              style={{ 
+                textShadow: '0 2px 10px rgba(255, 255, 255, 0.8)',
+                fontFamily: 'system-ui, -apple-system, sans-serif'
+              }}
+            >
+              Martín Pinto
+            </h2>
+            <p 
+              className="text-sm sm:text-base lg:text-lg tracking-[0.15em] sm:tracking-[0.2em] text-[#2F2A29]/80 uppercase mt-1"
+              style={{ textShadow: '0 1px 8px rgba(255, 255, 255, 0.9)' }}
+            >
+              Propiedades
+            </p>
+          </motion.div>
         </motion.div>
 
         <div className="max-w-xl lg:max-w-2xl mx-auto text-center">
