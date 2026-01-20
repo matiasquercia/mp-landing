@@ -89,8 +89,6 @@ export function Services() {
     }
   };
 
-  const progressPercentage = ((activeStep + 1) / processSteps.length) * 100;
-
   return (
     <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,63 +124,33 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="mb-10 lg:mb-14"
         >
-          {/* Progress bar - Desktop */}
-          <div className="hidden lg:block relative mb-8">
-            <div className="absolute top-6 left-0 right-0 h-1 bg-[#E5E7EB] rounded-full">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-[#D6ECBA] to-[#2F2A29] rounded-full"
-                initial={{ width: '0%' }}
-                animate={{ width: `${progressPercentage}%` }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              />
-            </div>
-            
-            {/* Step indicators */}
-            <div className="relative flex justify-between">
+          {/* Step indicators - Desktop */}
+          <div className="hidden lg:flex justify-center gap-2 mb-8">
               {processSteps.map((step, index) => {
                 const isActive = activeStep === index;
                 const isPast = index < activeStep;
                 
                 return (
-                  <motion.button
-                    key={index}
-                    onClick={() => setActiveStep(index)}
-                    className="flex flex-col items-center group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {/* Circle indicator */}
-                    <motion.div 
-                      animate={{ 
-                        scale: isActive ? 1.2 : 1,
-                        backgroundColor: isActive || isPast ? '#D6ECBA' : '#ffffff'
-                      }}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg border-4 transition-all duration-300 cursor-pointer ${
-                        isActive ? 'border-[#2F2A29]' : isPast ? 'border-[#D6ECBA]' : 'border-[#E5E7EB]'
-                      }`}
-                    >
-                      <step.icon className={`w-5 h-5 transition-colors ${
-                        isActive || isPast ? 'text-[#2F2A29]' : 'text-[#9CA3AF]'
-                      }`} />
-                    </motion.div>
-                    
-                    {/* Label */}
-                    <span className={`mt-3 text-xs font-medium transition-colors ${
-                      isActive ? 'text-[#2F2A29]' : 'text-[#9CA3AF]'
-                    }`}>
-                      {step.shortTitle}
-                    </span>
-                    
-                    {/* Step number badge */}
-                    <span className={`absolute -top-2 text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                      isActive ? 'bg-[#2F2A29] text-white' : 'bg-[#E5E7EB] text-[#6B7280]'
-                    }`}>
-                      {step.number}
-                    </span>
-                  </motion.button>
-                );
-              })}
-            </div>
+                <motion.button
+                  key={index}
+                  onClick={() => setActiveStep(index)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all duration-300 ${
+                    isActive 
+                      ? 'bg-[#2F2A29] border-[#2F2A29] text-white' 
+                      : isPast
+                        ? 'bg-[#D6ECBA]/20 border-[#D6ECBA] text-[#2F2A29]'
+                        : 'bg-white border-[#E5E7EB] text-[#6B7280] hover:border-[#D6ECBA]'
+                  }`}
+                >
+                  <span className={`text-xs font-bold ${isActive ? 'text-[#D6ECBA]' : isPast ? 'text-[#2F2A29]' : 'text-[#9CA3AF]'}`}>
+                    {step.number}
+                  </span>
+                  <span className="text-sm font-medium">{step.shortTitle}</span>
+                </motion.button>
+              );
+            })}
           </div>
 
           {/* Mobile step selector */}
@@ -280,22 +248,7 @@ export function Services() {
                 </div>
               </div>
 
-              {/* Step progress indicator */}
-              <div className="mt-6 pt-6 border-t border-[#E5E7EB]/50">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-[#6B7280]">Progreso del proceso</span>
-                  <span className="font-semibold text-[#2F2A29]">{activeStep + 1} de {processSteps.length}</span>
-                </div>
-                <div className="mt-2 h-2 bg-[#E5E7EB] rounded-full overflow-hidden">
-                  <motion.div 
-                    className="h-full bg-gradient-to-r from-[#D6ECBA] to-[#2F2A29] rounded-full"
-                    initial={{ width: '0%' }}
-                    animate={{ width: `${progressPercentage}%` }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
           </AnimatePresence>
         </motion.div>
 
