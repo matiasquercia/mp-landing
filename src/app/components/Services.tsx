@@ -4,12 +4,18 @@ import { motion, AnimatePresence } from 'motion/react';
 
 // Fotos representativas de cada paso del proceso
 const stepImages = {
-  tasacion: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
-  estrategia: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
-  produccion: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
-  publicacion: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80',
-  seguimiento: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-  cierre: 'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&w=800&q=80'
+  // Tasación: persona trabajando con papeles y documentos de propiedad
+  tasacion: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+  // Estrategia: planificación, pizarra con plan, reunión estratégica
+  estrategia: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
+  // Producción: fotógrafo sacando fotos a un interior/ambiente
+  produccion: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+  // Publicación: laptop con publicación, trabajo digital
+  publicacion: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+  // Seguimiento: persona hablando por teléfono o comunicándose
+  seguimiento: 'https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=800&q=80',
+  // Cierre: apretón de manos, acuerdo
+  cierre: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80'
 };
 
 export function Services() {
