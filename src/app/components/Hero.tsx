@@ -128,33 +128,6 @@ export function Hero() {
             en CABA
           </motion.h1>
           
-          {/* Key points - Compact */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-2 mb-5 lg:mb-6"
-          >
-            {[
-              'Tasaciones profesionales',
-              'Seguimiento transparente',
-              'Resultados en 90 días'
-            ].map((point, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#D6ECBA]/40 backdrop-blur-sm border border-[#D6ECBA] rounded-full text-sm text-[#2F2A29] font-medium shadow-sm"
-              >
-                <svg className="w-3.5 h-3.5 text-[#2F2A29]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-                {point}
-              </motion.span>
-            ))}
-          </motion.div>
-
           {/* CTA */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
