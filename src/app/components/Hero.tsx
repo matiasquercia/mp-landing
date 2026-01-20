@@ -12,10 +12,8 @@ const heroPoster = 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849
 export function Hero() {
   const { scrollY } = useScroll();
   
-  // Parallax transforms for all hero content
-  const contentOpacity = useTransform(scrollY, [100, 400], [1, 0]);
+  // Parallax transforms for all hero content (sin fade out)
   const contentY = useTransform(scrollY, [0, 400], [0, -100]);
-  const contentScale = useTransform(scrollY, [0, 400], [1, 0.95]);
   
   // Logo moves slightly faster for depth effect
   const logoY = useTransform(scrollY, [0, 300], [0, -120]);
@@ -58,9 +56,7 @@ export function Hero() {
         {/* All Hero Content with Parallax */}
         <motion.div
           style={{
-            opacity: contentOpacity,
             y: contentY,
-            scale: contentScale,
           }}
         >
           {/* Logo prominente - Grande y centrado */}
