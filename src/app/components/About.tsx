@@ -87,7 +87,7 @@ export function About() {
               <img
                 src={profileImage}
                 alt="Martín Pinto - Corredor Inmobiliario"
-                className="w-full h-[400px] sm:h-[480px] lg:h-[520px] object-cover object-top"
+                className="w-full h-[400px] sm:h-[480px] lg:h-[520px] object-cover object-[center_25%]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2F2A29]/30 via-transparent to-transparent" />
               
