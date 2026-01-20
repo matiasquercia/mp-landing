@@ -1,43 +1,57 @@
-import React from 'react';
-import { Home, TrendingUp, Camera, Globe, BarChart3, Handshake, Building2, Key, Calendar, Shield, ArrowRight, Sparkles } from 'lucide-react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { Home, TrendingUp, Camera, Globe, BarChart3, Handshake, Building2, Key, Calendar, Shield, ArrowRight, Sparkles, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export function Services() {
-  const mainServices = [
+  const [activeStep, setActiveStep] = useState<number>(0);
+
+  const processSteps = [
     {
       icon: TrendingUp,
       title: 'Tasación profesional',
+      shortTitle: 'Tasación',
       description: 'Respaldada por estudio de mercado inmobiliario en CABA.',
+      detail: 'Análisis exhaustivo considerando 12 variables de ponderación para determinar el precio óptimo de tu propiedad.',
       number: '01'
     },
     {
       icon: BarChart3,
       title: 'Plan estratégico',
+      shortTitle: 'Estrategia',
       description: 'Comercialización adaptada al tipo de propiedad y público objetivo.',
+      detail: 'Definimos juntos la estrategia de venta o alquiler más efectiva según las características de tu inmueble.',
       number: '02'
     },
     {
       icon: Camera,
       title: 'Producción visual',
-      description: 'Fotografía y material comercial profesional.',
+      shortTitle: 'Producción',
+      description: 'Fotografía, video recorrido y material comercial profesional.',
+      detail: 'Creamos contenido visual de alta calidad que destaca los mejores atributos de tu propiedad.',
       number: '03'
     },
     {
       icon: Globe,
       title: 'Publicación amplia',
+      shortTitle: 'Publicación',
       description: 'En múltiples portales inmobiliarios líderes.',
+      detail: 'Tu propiedad visible en los principales portales y redes, llegando al público objetivo correcto.',
       number: '04'
     },
     {
       icon: Sparkles,
       title: 'Seguimiento permanente',
+      shortTitle: 'Seguimiento',
       description: 'Reporte semanal sobre evolución de publicaciones y consultas.',
+      detail: 'Te mantengo informado con reportes detallados sobre visitas, consultas y feedback del mercado.',
       number: '05'
     },
     {
       icon: Handshake,
-      title: 'Acompañamiento integral',
+      title: 'Cierre exitoso',
+      shortTitle: 'Cierre',
       description: 'Desde la reserva hasta el cierre de la operación.',
+      detail: 'Te acompaño en cada etapa: negociación, documentación y escrituración hasta la entrega de llaves.',
       number: '06'
     }
   ];
@@ -55,8 +69,8 @@ export function Services() {
     },
     {
       icon: Calendar,
-      title: 'Alquileres amoblados y equipados',
-      description: 'Con fines específicos (de 6 meses a 1 año renovables)'
+      title: 'Alquileres temporarios',
+      description: 'Propiedades amobladas para estadías cortas'
     },
     {
       icon: Shield,
@@ -75,10 +89,12 @@ export function Services() {
     }
   };
 
+  const progressPercentage = ((activeStep + 1) / processSteps.length) * 100;
+
   return (
     <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Service */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,39 +114,190 @@ export function Services() {
             </span>
           </h2>
           <p className="text-sm sm:text-base text-[#6B7280] max-w-2xl mx-auto">
-            Servicio completo para propietarios que buscan eficiencia y transparencia.
+            Un proceso claro y transparente en 6 pasos hacia el éxito de tu operación.
           </p>
         </motion.div>
 
-        {/* Main Services Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-10 lg:mb-14">
-          {mainServices.map((service, index) => (
+        {/* Interactive Process Timeline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-10 lg:mb-14"
+        >
+          {/* Progress bar - Desktop */}
+          <div className="hidden lg:block relative mb-8">
+            <div className="absolute top-6 left-0 right-0 h-1 bg-[#E5E7EB] rounded-full">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-[#D6ECBA] to-[#2F2A29] rounded-full"
+                initial={{ width: '0%' }}
+                animate={{ width: `${progressPercentage}%` }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              />
+            </div>
+            
+            {/* Step indicators */}
+            <div className="relative flex justify-between">
+              {processSteps.map((step, index) => {
+                const isActive = activeStep === index;
+                const isPast = index < activeStep;
+                
+                return (
+                  <motion.button
+                    key={index}
+                    onClick={() => setActiveStep(index)}
+                    className="flex flex-col items-center group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Circle indicator */}
+                    <motion.div 
+                      animate={{ 
+                        scale: isActive ? 1.2 : 1,
+                        backgroundColor: isActive || isPast ? '#D6ECBA' : '#ffffff'
+                      }}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg border-4 transition-all duration-300 cursor-pointer ${
+                        isActive ? 'border-[#2F2A29]' : isPast ? 'border-[#D6ECBA]' : 'border-[#E5E7EB]'
+                      }`}
+                    >
+                      <step.icon className={`w-5 h-5 transition-colors ${
+                        isActive || isPast ? 'text-[#2F2A29]' : 'text-[#9CA3AF]'
+                      }`} />
+                    </motion.div>
+                    
+                    {/* Label */}
+                    <span className={`mt-3 text-xs font-medium transition-colors ${
+                      isActive ? 'text-[#2F2A29]' : 'text-[#9CA3AF]'
+                    }`}>
+                      {step.shortTitle}
+                    </span>
+                    
+                    {/* Step number badge */}
+                    <span className={`absolute -top-2 text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                      isActive ? 'bg-[#2F2A29] text-white' : 'bg-[#E5E7EB] text-[#6B7280]'
+                    }`}>
+                      {step.number}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile step selector */}
+          <div className="lg:hidden flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide">
+            {processSteps.map((step, index) => {
+              const isActive = activeStep === index;
+              return (
+                <motion.button
+                  key={index}
+                  onClick={() => setActiveStep(index)}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full border-2 transition-all ${
+                    isActive 
+                      ? 'bg-[#2F2A29] border-[#2F2A29] text-white' 
+                      : 'bg-white border-[#E5E7EB] text-[#6B7280]'
+                  }`}
+                >
+                  <span className={`text-xs font-bold ${isActive ? 'text-[#D6ECBA]' : 'text-[#9CA3AF]'}`}>
+                    {step.number}
+                  </span>
+                  <span className="text-sm font-medium">{step.shortTitle}</span>
+                </motion.button>
+              );
+            })}
+          </div>
+
+          {/* Active step detail card */}
+          <AnimatePresence mode="wait">
             <motion.div
-              key={index}
+              key={activeStep}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group relative bg-white rounded-xl p-4 sm:p-5 shadow-md hover:shadow-lg transition-all duration-300 border border-[#E5E7EB]/50 overflow-hidden"
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-gradient-to-br from-[#F9FAFB] to-white rounded-2xl p-6 sm:p-8 border border-[#E5E7EB]/50 shadow-lg"
             >
-              <span className="absolute -top-2 -right-1 text-5xl sm:text-6xl font-bold text-[#D6ECBA]/15 select-none">
-                {service.number}
-              </span>
-              
-              <div className="relative">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-[#D6ECBA] to-[#D6ECBA]/60 rounded-lg flex items-center justify-center mb-3 shadow-md shadow-[#D6ECBA]/20 group-hover:scale-105 transition-transform">
-                  <service.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#2F2A29]" />
+              <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
+                {/* Icon and number */}
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#D6ECBA] to-[#D6ECBA]/60 rounded-2xl flex items-center justify-center shadow-lg">
+                    {React.createElement(processSteps[activeStep].icon, { 
+                      className: "w-8 h-8 sm:w-10 sm:h-10 text-[#2F2A29]" 
+                    })}
+                  </div>
+                  <div className="lg:hidden">
+                    <span className="text-sm text-[#D6ECBA] font-bold">Paso {processSteps[activeStep].number}</span>
+                    <h3 className="text-xl font-bold text-[#2F2A29]">{processSteps[activeStep].title}</h3>
+                  </div>
                 </div>
-                <h3 className="text-sm sm:text-base font-semibold text-[#2F2A29] mb-1">
-                  {service.title}
-                </h3>
-                <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed">
-                  {service.description}
-                </p>
+                
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="hidden lg:block mb-2">
+                    <span className="text-sm text-[#D6ECBA] font-bold">Paso {processSteps[activeStep].number}</span>
+                  </div>
+                  <h3 className="hidden lg:block text-2xl font-bold text-[#2F2A29] mb-3">
+                    {processSteps[activeStep].title}
+                  </h3>
+                  <p className="text-[#6B7280] mb-4 leading-relaxed">
+                    {processSteps[activeStep].detail}
+                  </p>
+                  <p className="text-sm text-[#9CA3AF] italic">
+                    "{processSteps[activeStep].description}"
+                  </p>
+                </div>
+
+                {/* Navigation arrows */}
+                <div className="flex lg:flex-col gap-2 self-center">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
+                    disabled={activeStep === 0}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                      activeStep === 0 
+                        ? 'bg-[#E5E7EB] text-[#9CA3AF] cursor-not-allowed' 
+                        : 'bg-[#2F2A29] text-white hover:bg-[#2F2A29]/80'
+                    }`}
+                  >
+                    <ChevronRight className="w-5 h-5 rotate-180" />
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
+                    disabled={activeStep === processSteps.length - 1}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                      activeStep === processSteps.length - 1 
+                        ? 'bg-[#E5E7EB] text-[#9CA3AF] cursor-not-allowed' 
+                        : 'bg-[#2F2A29] text-white hover:bg-[#2F2A29]/80'
+                    }`}
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Step progress indicator */}
+              <div className="mt-6 pt-6 border-t border-[#E5E7EB]/50">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-[#6B7280]">Progreso del proceso</span>
+                  <span className="font-semibold text-[#2F2A29]">{activeStep + 1} de {processSteps.length}</span>
+                </div>
+                <div className="mt-2 h-2 bg-[#E5E7EB] rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-[#D6ECBA] to-[#2F2A29] rounded-full"
+                    initial={{ width: '0%' }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </div>
               </div>
             </motion.div>
-          ))}
-        </div>
+          </AnimatePresence>
+        </motion.div>
 
         {/* Additional Services */}
         <motion.div
