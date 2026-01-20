@@ -108,11 +108,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#4B5563] mb-5 lg:mb-6 leading-relaxed"
-            style={{ textShadow: '0 1px 8px rgba(255, 255, 255, 0.9)' }}
+            className="text-base sm:text-lg text-[#2F2A29]/80 mb-5 lg:mb-6 leading-relaxed font-medium"
+            style={{ textShadow: '0 1px 12px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8)' }}
           >
             Asesoramiento inmobiliario con{' '}
-            <span className="font-semibold text-[#2F2A29]">más de 20 años de experiencia</span>. 
+            <span className="font-bold text-[#2F2A29]">más de 20 años de experiencia</span>. 
             Te acompaño hasta el cierre exitoso de tu operación.
           </motion.p>
 
