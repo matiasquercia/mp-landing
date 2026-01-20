@@ -194,13 +194,6 @@ export function Services() {
                     }`}>
                       {step.shortTitle}
                     </span>
-                    
-                    {/* Step number badge */}
-                    <span className={`absolute -top-2 text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                      isActive ? 'bg-[#2F2A29] text-white' : 'bg-[#E5E7EB] text-[#6B7280]'
-                    }`}>
-                      {step.number}
-                    </span>
                   </motion.button>
                 );
               })}
@@ -249,11 +242,9 @@ export function Services() {
                               : 'border-[#E5E7EB]'
                         }`}
                       >
-                        <span className={`text-xs font-bold ${
+                        <step.icon className={`w-4 h-4 transition-colors ${
                           isActive ? 'text-[#D6ECBA]' : isPast ? 'text-[#2F2A29]' : 'text-[#9CA3AF]'
-                        }`}>
-                          {step.number}
-                        </span>
+                        }`} />
                       </motion.div>
                     </motion.button>
                   );
