@@ -78,13 +78,13 @@ export function Hero() {
             </div>
           </motion.div>
 
-          <div className="max-w-xl lg:max-w-2xl mx-auto text-center">
+          <div className="max-w-2xl lg:max-w-4xl mx-auto text-center">
           {/* Main Title */}
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2F2A29] mb-4 lg:mb-5 leading-[1.15] tracking-tight"
+            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#2F2A29] mb-4 lg:mb-5 leading-[1.15] tracking-tight sm:whitespace-nowrap"
             style={{ textShadow: '0 2px 10px rgba(255, 255, 255, 0.8)' }}
           >
             <span className="relative inline-block">
