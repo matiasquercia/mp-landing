@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
-import logoFull from '../../assets/MP-prop-01.png';
+import logoFull from '../../assets/logo/MP-prop-01.png';
 
 // Video de Buenos Aires - archivo local en public/
 const heroVideo = '/hero-video.mp4';
