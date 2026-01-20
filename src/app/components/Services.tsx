@@ -141,10 +141,10 @@ export function Services() {
         </motion.div>
 
         {/* Interactive Process Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-10 lg:mb-14"
         >
@@ -270,7 +270,7 @@ export function Services() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E5E7EB]/50 h-full flex flex-col"
+                  className="relative bg-white rounded-xl overflow-hidden shadow-lg border border-[#E5E7EB]/50 h-full flex flex-col"
                 >
                   {/* Image - ocupa ~55% del espacio */}
                   <div className="relative h-[55%] flex-shrink-0">
@@ -294,40 +294,40 @@ export function Services() {
                       {processSteps[activeStep].description}
                     </p>
                     
-                    {/* Spacer */}
+                    {/* Spacer para empujar el indicador al fondo */}
                     <div className="flex-1" />
-                    
-                    {/* Navigation */}
-                    <div className="flex items-center justify-between pt-2 border-t border-[#E5E7EB]/50 flex-shrink-0">
-                      <button
-                        onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
-                        disabled={activeStep === 0}
-                        className={`p-1.5 rounded-full transition-all ${
-                          activeStep === 0 
-                            ? 'text-[#D1D5DB] cursor-not-allowed' 
-                            : 'text-[#6B7280] hover:bg-[#F3F4F6]'
-                        }`}
-                      >
-                        <ChevronRight className="w-4 h-4 rotate-180" />
-                      </button>
-                      
+
+                    {/* Indicador de paso (sin flechas, solo centro) */}
+                    <div className="pt-2 border-t border-[#E5E7EB]/50 flex-shrink-0 flex items-center justify-center">
                       <span className="text-[10px] text-[#9CA3AF]">
-                        {activeStep + 1} / {processSteps.length}
+                        Paso {activeStep + 1} de {processSteps.length}
                       </span>
-                      
-                      <button
-                        onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
-                        disabled={activeStep === processSteps.length - 1}
-                        className={`p-1.5 rounded-full transition-all ${
-                          activeStep === processSteps.length - 1 
-                            ? 'text-[#D1D5DB] cursor-not-allowed' 
-                            : 'text-[#6B7280] hover:bg-[#F3F4F6]'
-                        }`}
-                      >
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
                     </div>
                   </div>
+
+                  {/* Botones de navegación laterales (solo íconos) */}
+                  <button
+                    onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
+                    disabled={activeStep === 0}
+                    className={`absolute inset-y-0 left-1 flex items-center pl-2 pr-1 text-[#2F2A29] ${
+                      activeStep === 0 ? 'opacity-20 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
+                    }`}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center">
+                      <ChevronRight className="w-4 h-4 rotate-180" />
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
+                    disabled={activeStep === processSteps.length - 1}
+                    className={`absolute inset-y-0 right-1 flex items-center pr-2 pl-1 text-[#2F2A29] ${
+                      activeStep === processSteps.length - 1 ? 'opacity-20 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
+                    }`}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white/80 shadow-md flex items-center justify-center">
+                      <ChevronRight className="w-4 h-4" />
+                    </div>
+                  </button>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -359,7 +359,7 @@ export function Services() {
                   <div>
                     <h3 className="text-3xl font-bold text-[#2F2A29] mb-4">
                       {processSteps[activeStep].title}
-                    </h3>
+                </h3>
                     <p className="text-[#6B7280] text-lg leading-relaxed mb-4">
                       {processSteps[activeStep].detail}
                     </p>
@@ -367,50 +367,46 @@ export function Services() {
                       {processSteps[activeStep].description}
                     </p>
                   </div>
-                  
-                  {/* Navigation */}
-                  <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#E5E7EB]/50">
-                    <button
-                      onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
-                      disabled={activeStep === 0}
-                      className={`flex items-center gap-2 text-sm font-medium transition-all ${
-                        activeStep === 0 
-                          ? 'text-[#D1D5DB] cursor-not-allowed' 
-                          : 'text-[#6B7280] hover:text-[#2F2A29]'
-                      }`}
-                    >
-                      <ChevronRight className="w-4 h-4 rotate-180" />
-                      <span>Anterior</span>
-                    </button>
-                    
-                    <div className="flex gap-2">
-                      {processSteps.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setActiveStep(index)}
-                          className={`transition-all duration-300 rounded-full ${
-                            index === activeStep 
-                              ? 'w-8 h-2 bg-[#2F2A29]' 
-                              : 'w-2 h-2 bg-[#E5E7EB] hover:bg-[#D6ECBA]'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    
-                    <button
-                      onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
-                      disabled={activeStep === processSteps.length - 1}
-                      className={`flex items-center gap-2 text-sm font-medium transition-all ${
-                        activeStep === processSteps.length - 1 
-                          ? 'text-[#D1D5DB] cursor-not-allowed' 
-                          : 'text-[#6B7280] hover:text-[#2F2A29]'
-                      }`}
-                    >
-                      <span>Siguiente</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
                 </div>
+              </div>
+
+              {/* Botones laterales de navegación (desktop) */}
+              <button
+                onClick={() => setActiveStep(prev => Math.max(0, prev - 1))}
+                disabled={activeStep === 0}
+                className={`absolute inset-y-0 left-3 my-auto flex items-center text-[#2F2A29] ${
+                  activeStep === 0 ? 'opacity-20 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
+                }`}
+              >
+                <div className="w-9 h-9 rounded-full bg-white/90 shadow-lg flex items-center justify-center">
+                  <ChevronRight className="w-4 h-4 rotate-180" />
+                </div>
+              </button>
+              <button
+                onClick={() => setActiveStep(prev => Math.min(processSteps.length - 1, prev + 1))}
+                disabled={activeStep === processSteps.length - 1}
+                className={`absolute inset-y-0 right-3 my-auto flex items-center text-[#2F2A29] ${
+                  activeStep === processSteps.length - 1 ? 'opacity-20 cursor-not-allowed' : 'opacity-80 hover:opacity-100'
+                }`}
+              >
+                <div className="w-9 h-9 rounded-full bg-white/90 shadow-lg flex items-center justify-center">
+                  <ChevronRight className="w-4 h-4" />
+                </div>
+              </button>
+
+              {/* Indicadores de paso (puntos) */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {processSteps.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveStep(index)}
+                    className={`transition-all duration-300 rounded-full ${
+                      index === activeStep 
+                        ? 'w-8 h-2 bg-[#2F2A29]' 
+                        : 'w-2 h-2 bg-[#E5E7EB] hover:bg-[#D6ECBA]'
+                    }`}
+                  />
+                ))}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -431,40 +427,40 @@ export function Services() {
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight">
                 Soluciones complementarias
-              </h3>
+            </h3>
               <p className="text-white/70 text-sm max-w-md mx-auto">
                 Para todas tus necesidades inmobiliarias
-              </p>
-            </div>
+            </p>
+          </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {additionalServices.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+            {additionalServices.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/10 hover:bg-white/15 transition-all group"
-                >
+              >
                   <div className="w-9 h-9 bg-[#D6ECBA]/20 rounded-lg flex items-center justify-center mb-3 group-hover:bg-[#D6ECBA]/30 transition-colors">
                     <service.icon className="w-4 h-4 text-[#D6ECBA]" />
-                  </div>
+                </div>
                   <h4 className="text-sm font-semibold text-white mb-1">
-                    {service.title}
-                  </h4>
+                  {service.title}
+                </h4>
                   <p className="text-white/60 text-xs">
-                    {service.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+                  {service.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
 
             <div className="text-center mt-6 lg:mt-8">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('contact')}
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#D6ECBA] text-[#2F2A29] rounded-lg hover:bg-[#D6ECBA]/90 transition-colors font-semibold text-sm shadow-lg"
               >
                 Consultar servicios
