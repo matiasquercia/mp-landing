@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'motion/react';
 // @ts-expect-error - Los archivos existen, es un problema de caché de TypeScript
 import tasacionImg from '../../assets/fotos/gestion-integral/tasacion-profesional.jpg';
 // @ts-expect-error
-import planEstrategicoImg from '../../assets/fotos/gestion-integral/plan-estrategico.jpg';
+import planEstrategicoImg from '../../assets/fotos/gestion-integral/plan-estrategico.png';
 // @ts-expect-error
 import produccionVisualImg from '../../assets/fotos/gestion-integral/produccion-visual.jpg';
 // @ts-expect-error
@@ -39,6 +39,7 @@ export function Services() {
     {
       icon: TrendingUp,
       image: stepImages.tasacion,
+      imagePosition: 'center',
       title: 'Tasación profesional',
       shortTitle: 'Tasación',
       description: 'Respaldada por estudio de mercado inmobiliario en CABA.',
@@ -48,6 +49,7 @@ export function Services() {
     {
       icon: BarChart3,
       image: stepImages.estrategia,
+      imagePosition: '60% 35%',
       title: 'Plan estratégico',
       shortTitle: 'Estrategia',
       description: 'Comercialización adaptada al tipo de propiedad y público objetivo.',
@@ -57,6 +59,7 @@ export function Services() {
     {
       icon: Camera,
       image: stepImages.produccion,
+      imagePosition: 'center',
       title: 'Producción visual',
       shortTitle: 'Producción',
       description: 'Fotografía, video recorrido y material comercial profesional.',
@@ -66,6 +69,7 @@ export function Services() {
     {
       icon: Globe,
       image: stepImages.publicacion,
+      imagePosition: 'center',
       title: 'Publicación amplia',
       shortTitle: 'Publicación',
       description: 'En múltiples portales inmobiliarios líderes.',
@@ -75,6 +79,7 @@ export function Services() {
     {
       icon: Sparkles,
       image: stepImages.seguimiento,
+      imagePosition: 'center',
       title: 'Seguimiento permanente',
       shortTitle: 'Seguimiento',
       description: 'Reporte semanal sobre evolución de publicaciones y consultas.',
@@ -84,6 +89,7 @@ export function Services() {
     {
       icon: Handshake,
       image: stepImages.cierre,
+      imagePosition: 'center',
       title: 'Cierre exitoso',
       shortTitle: 'Cierre',
       description: 'Desde la reserva hasta el cierre de la operación.',
@@ -282,7 +288,8 @@ export function Services() {
                     <img 
                       src={processSteps[activeStep].image} 
                       alt={processSteps[activeStep].title}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: processSteps[activeStep].imagePosition }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                   </div>
@@ -353,7 +360,8 @@ export function Services() {
                     <img 
                       src={processSteps[activeStep].image} 
                       alt={processSteps[activeStep].title}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: processSteps[activeStep].imagePosition }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
                   </div>
@@ -386,8 +394,8 @@ export function Services() {
                           : 'w-2 h-2 bg-[#E5E7EB] hover:bg-[#D6ECBA]'
                       }`}
                     />
-                  ))}
-                </div>
+          ))}
+        </div>
               </motion.div>
             </AnimatePresence>
 
