@@ -3,7 +3,7 @@ import { Handshake } from 'lucide-react';
 import { motion } from 'motion/react';
 import escribaniaImg from '../../assets/fotos/alianzas-profesionales/escribania.jpg';
 import estudioJuridicoImg from '../../assets/fotos/alianzas-profesionales/estudio-juridico.jpg';
-import disenoInterioresImg from '../../assets/fotos/alianzas-profesionales/diseño-interiores.jpg';
+import disenoInterioresImg from '../../assets/fotos/alianzas-profesionales/diseno-interiores.jpg';
 
 // Imágenes representativas de cada profesión
 const allyImages = {
