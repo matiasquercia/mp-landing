@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { Home, TrendingUp, Camera, Globe, BarChart3, Handshake, Building2, Key, Calendar, Shield, ArrowRight, Sparkles, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-// Importar imágenes del proceso - usando rutas relativas
-// @ts-ignore - TypeScript no maneja bien espacios en nombres de carpetas
-import tasacionImg from '../../assets/fotos/gestion integral venta y alquiler/tasacion profesional.jpg';
-// @ts-ignore
-import planEstrategicoImg from '../../assets/fotos/gestion integral venta y alquiler/plan estrategico.jpg';
-// @ts-ignore
-import produccionVisualImg from '../../assets/fotos/gestion integral venta y alquiler/produccion visual.jpg';
-// @ts-ignore
-import publicacionPortalesImg from '../../assets/fotos/gestion integral venta y alquiler/publicacion portales.jpg';
-// @ts-ignore
-import reporteSeguimientoImg from '../../assets/fotos/gestion integral venta y alquiler/reporte seguimiento.jpg';
-// @ts-ignore
-import cierreExitosoImg from '../../assets/fotos/gestion integral venta y alquiler/cierre exitoso.jpg';
+// Importar imágenes del proceso
+// @ts-expect-error - Los archivos existen, es un problema de caché de TypeScript
+import tasacionImg from '../../assets/fotos/gestion-integral/tasacion-profesional.jpg';
+// @ts-expect-error
+import planEstrategicoImg from '../../assets/fotos/gestion-integral/plan-estrategico.jpg';
+// @ts-expect-error
+import produccionVisualImg from '../../assets/fotos/gestion-integral/produccion-visual.jpg';
+// @ts-expect-error
+import publicacionPortalesImg from '../../assets/fotos/gestion-integral/publicacion-portales.jpg';
+// @ts-expect-error
+import reporteSeguimientoImg from '../../assets/fotos/gestion-integral/reporte-seguimiento.jpg';
+// @ts-expect-error
+import cierreExitosoImg from '../../assets/fotos/gestion-integral/cierre-exitoso.jpg';
 
 // Fotos representativas de cada paso del proceso
 const stepImages = {

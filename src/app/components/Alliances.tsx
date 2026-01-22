@@ -1,12 +1,9 @@
 import React from 'react';
 import { Handshake } from 'lucide-react';
 import { motion } from 'motion/react';
-// @ts-ignore - TypeScript no maneja bien espacios en nombres de carpetas
-import escribaniaImg from '../../assets/fotos/alianzas profesionales/escribania.jpg';
-// @ts-ignore
-import estudioJuridicoImg from '../../assets/fotos/alianzas profesionales/estudio juridico.jpg';
-// @ts-ignore
-import disenoInterioresImg from '../../assets/fotos/alianzas profesionales/diseño interiores.jpg';
+import escribaniaImg from '../../assets/fotos/alianzas-profesionales/escribania.jpg';
+import estudioJuridicoImg from '../../assets/fotos/alianzas-profesionales/estudio-juridico.jpg';
+import disenoInterioresImg from '../../assets/fotos/alianzas-profesionales/diseño-interiores.jpg';
 
 // Imágenes representativas de cada profesión
 const allyImages = {
