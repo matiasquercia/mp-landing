@@ -282,9 +282,9 @@ export function Services() {
                     <img 
                       src={processSteps[activeStep].image} 
                       alt={processSteps[activeStep].title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                   </div>
                   
                   {/* Content - espacio propio para textos */}
@@ -349,13 +349,13 @@ export function Services() {
               >
                 <div className="flex flex-row">
                   {/* Image */}
-                  <div className="relative w-2/5 min-h-[320px]">
+                  <div className="relative w-2/5 h-[400px] overflow-hidden flex-shrink-0">
                     <img 
                       src={processSteps[activeStep].image} 
                       alt={processSteps[activeStep].title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
                   </div>
                   
                   {/* Content */}
