@@ -2,20 +2,34 @@ import React, { useState } from 'react';
 import { Home, TrendingUp, Camera, Globe, BarChart3, Handshake, Building2, Key, Calendar, Shield, ArrowRight, Sparkles, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+// Importar imágenes del proceso - usando rutas relativas
+// @ts-ignore - TypeScript no maneja bien espacios en nombres de carpetas
+import tasacionImg from '../../assets/fotos/gestion integral venta y alquiler/tasacion profesional.jpg';
+// @ts-ignore
+import planEstrategicoImg from '../../assets/fotos/gestion integral venta y alquiler/plan estrategico.jpg';
+// @ts-ignore
+import produccionVisualImg from '../../assets/fotos/gestion integral venta y alquiler/produccion visual.jpg';
+// @ts-ignore
+import publicacionPortalesImg from '../../assets/fotos/gestion integral venta y alquiler/publicacion portales.jpg';
+// @ts-ignore
+import reporteSeguimientoImg from '../../assets/fotos/gestion integral venta y alquiler/reporte seguimiento.jpg';
+// @ts-ignore
+import cierreExitosoImg from '../../assets/fotos/gestion integral venta y alquiler/cierre exitoso.jpg';
+
 // Fotos representativas de cada paso del proceso
 const stepImages = {
   // Tasación: persona trabajando con papeles y documentos de propiedad
-  tasacion: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
+  tasacion: tasacionImg,
   // Estrategia: planificación, pizarra con plan, reunión estratégica
-  estrategia: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
+  estrategia: planEstrategicoImg,
   // Producción: fotógrafo sacando fotos a un interior/ambiente
-  produccion: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+  produccion: produccionVisualImg,
   // Publicación: laptop con publicación, trabajo digital
-  publicacion: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+  publicacion: publicacionPortalesImg,
   // Seguimiento: enviando reportes, informando, dashboard con métricas
-  seguimiento: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+  seguimiento: reporteSeguimientoImg,
   // Cierre: apretón de manos, acuerdo
-  cierre: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80'
+  cierre: cierreExitosoImg
 };
 
 export function Services() {

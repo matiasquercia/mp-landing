@@ -1,12 +1,18 @@
 import React from 'react';
 import { Handshake } from 'lucide-react';
 import { motion } from 'motion/react';
+// @ts-ignore - TypeScript no maneja bien espacios en nombres de carpetas
+import escribaniaImg from '../../assets/fotos/alianzas profesionales/escribania.jpg';
+// @ts-ignore
+import estudioJuridicoImg from '../../assets/fotos/alianzas profesionales/estudio juridico.jpg';
+// @ts-ignore
+import disenoInterioresImg from '../../assets/fotos/alianzas profesionales/diseño interiores.jpg';
 
 // Imágenes representativas de cada profesión
 const allyImages = {
-  escribania: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80',
-  juridico: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80',
-  interiorismo: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80'
+  escribania: escribaniaImg,
+  juridico: estudioJuridicoImg,
+  interiorismo: disenoInterioresImg
 };
 
 export function Alliances() {
