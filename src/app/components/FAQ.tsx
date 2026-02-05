@@ -9,43 +9,51 @@ export function FAQ() {
       question: '¿Cuáles son las condiciones de contratación con Martín Pinto Propiedades?',
       answer: (
         <div className="space-y-3">
-          <p>
-            Honorarios Martillero, costo de comercialización y gastos administrativos:
-            <span className="font-semibold text-[#2F2A29]"> 3% + IVA</span> sobre el valor
-            de venta de la operación.
-          </p>
-          <p>
-            La autorización en exclusiva permite aplicar un plan estratégico profesional,
-            cuidando el valor del inmueble y optimizando los tiempos de operación. Es el
-            compromiso mutuo por el cual el/ los propietarios me autorizan a publicar,
-            comercializar, reservar y vender su propiedad, y MPP a brindar el servicio
-            premium detallado con anterioridad. El propietario conserva total control
-            sobre las decisiones finales, mientras que el corredor asume la
-            responsabilidad de la gestión comercial.
-          </p>
           <div>
-            <p className="font-semibold text-[#2F2A29] mb-2">Documentación requerida:</p>
+            <p className="font-semibold text-[#2F2A29] mb-1">Honorarios profesionales</p>
+            <p>
+              Los honorarios por servicios de martillero, comercialización y gestión
+              administrativa son del <span className="font-semibold text-[#2F2A29]">3% + IVA</span>,
+              calculados sobre el valor final de venta de la operación.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-[#2F2A29] mb-1">
+              Modalidad de trabajo: autorización en exclusiva
+            </p>
+            <p>
+              La autorización en exclusiva permite implementar un plan estratégico profesional,
+              enfocado en cuidar el valor del inmueble y optimizar los tiempos de venta.
+            </p>
+            <p>
+              Mediante este acuerdo, el/los propietario/s autorizan a Martín Pinto Propiedades
+              a publicar, comercializar, reservar y vender la propiedad, mientras que MPP se
+              compromete a brindar un servicio premium integral.
+            </p>
+            <p>
+              El propietario mantiene el control total de las decisiones finales, y el corredor
+              asume la responsabilidad completa de la gestión comercial.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-[#2F2A29] mb-2">Documentación requerida</p>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Copia del DNI del/ los propietarios, para verificar identidades.</li>
-              <li>Copia de Escritura/ Boleto, acredita quien/es son los propietarios legales.</li>
+              <li>Copia del DNI del/los propietario/s: verificación de identidad.</li>
+              <li>Copia de escritura o boleto: acredita la titularidad legal.</li>
               <li>
-                Expensas y ABL y AYSA, demuestra el libre deuda, es los primero que pide
-                un comprador serio.
+                Comprobantes de expensas, ABL y AYSA: acreditan libre deuda; es lo primero
+                que solicita un comprador serio.
               </li>
+              <li>Reglamento de copropiedad: información esencial sobre normas y uso del edificio.</li>
               <li>
-                Reglamento de copropiedad, información esencial para que el comprador
-                conozca sobre las normas del edificio.
-              </li>
-              <li>
-                Planos municipales aprobados y actualizados, confirma las medidas exactas
-                evitando conflictos futuros y lo habilita a venta APTO crédito
-                hipotecario.
+                Planos municipales aprobados y actualizados: confirman superficies, evitan
+                conflictos futuros y habilitan la venta apta crédito hipotecario.
               </li>
             </ul>
           </div>
           <p>
-            Si te falta algo, te ayudo como parte del servicio a gestionarlo para
-            regularizar la documentación.
+            Si falta algún documento, te asisto en su gestión y regularización como parte del
+            servicio.
           </p>
         </div>
       )
