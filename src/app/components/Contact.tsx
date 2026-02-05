@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
+import { Facebook, Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { Input } from './ui/Input';
 import { TextArea } from './ui/TextArea';
@@ -19,8 +19,20 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log('Form submitted:', formData);
+    const subject = `Consulta - ${formData.name || 'Contacto'}`;
+    const body = [
+      `Nombre: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Teléfono: ${formData.phone}`,
+      `Tipo de operación: ${formData.operation}`,
+      '',
+      formData.message
+    ].join('\n');
+    const mailto = `mailto:contacto@martinpinto.com.ar?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -202,7 +214,7 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="font-semibold text-[#2F2A29]">Email</div>
-                    <div className="text-[#6B7280]">martin.pinto@inmobiliaria.com</div>
+                    <div className="text-[#6B7280]">contacto@martinpinto.com.ar</div>
                   </div>
                 </div>
 
@@ -245,16 +257,22 @@ export function Contact() {
                 </h4>
                 <div className="flex gap-3">
                   <button
-                    onClick={() => window.open('https://instagram.com', '_blank')}
+                    onClick={() => window.open('https://www.instagram.com/martinpinto.com.ar/', '_blank')}
                     className="w-12 h-12 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg flex items-center justify-center hover:bg-[#2F2A29] hover:text-white transition-colors"
                   >
                     <Instagram className="w-5 h-5" />
                   </button>
                   <button
-                    onClick={() => window.open('https://linkedin.com', '_blank')}
+                    onClick={() => window.open('https://www.linkedin.com/in/martin-pinto-106a1713/', '_blank')}
                     className="w-12 h-12 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg flex items-center justify-center hover:bg-[#2F2A29] hover:text-white transition-colors"
                   >
                     <Linkedin className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => window.open('https://www.facebook.com/Martinpintopropiedades', '_blank')}
+                    className="w-12 h-12 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg flex items-center justify-center hover:bg-[#2F2A29] hover:text-white transition-colors"
+                  >
+                    <Facebook className="w-5 h-5" />
                   </button>
                 </div>
               </div>

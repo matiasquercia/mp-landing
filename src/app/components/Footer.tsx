@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Linkedin, Mail, Phone, MapPin, Award, ArrowUpRight } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, Award, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import logoImage from '../../assets/logo/MP-prop-04.png';
 
@@ -83,7 +83,7 @@ export function Footer() {
               <motion.button
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open('https://instagram.com', '_blank')}
+                onClick={() => window.open('https://www.instagram.com/martinpinto.com.ar/', '_blank')}
                 className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-[#D6ECBA] hover:text-[#2F2A29] transition-colors"
               >
                 <Instagram className="w-5 h-5" />
@@ -91,10 +91,18 @@ export function Footer() {
               <motion.button
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open('https://linkedin.com', '_blank')}
+                onClick={() => window.open('https://www.linkedin.com/in/martin-pinto-106a1713/', '_blank')}
                 className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-[#D6ECBA] hover:text-[#2F2A29] transition-colors"
               >
                 <Linkedin className="w-5 h-5" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.open('https://www.facebook.com/Martinpintopropiedades', '_blank')}
+                className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-[#D6ECBA] hover:text-[#2F2A29] transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
               </motion.button>
             </div>
           </div>
@@ -150,13 +158,13 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:martin.pinto@inmobiliaria.com"
+                  href="mailto:contacto@martinpinto.com.ar"
                   className="flex items-center gap-3 text-white/60 hover:text-[#D6ECBA] transition-colors group"
                 >
                   <div className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-[#D6ECBA]/20 transition-colors">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="text-sm">martin.pinto@inmobiliaria.com</span>
+                  <span className="text-sm">contacto@martinpinto.com.ar</span>
                 </a>
               </li>
               <li>

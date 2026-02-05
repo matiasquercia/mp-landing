@@ -6,6 +6,51 @@ import { motion } from 'motion/react';
 export function FAQ() {
   const faqs = [
     {
+      question: '¿Cuáles son las condiciones de contratación con Martín Pinto Propiedades?',
+      answer: (
+        <div className="space-y-3">
+          <p>
+            Honorarios Martillero, costo de comercialización y gastos administrativos:
+            <span className="font-semibold text-[#2F2A29]"> 3% + IVA</span> sobre el valor
+            de venta de la operación.
+          </p>
+          <p>
+            La autorización en exclusiva permite aplicar un plan estratégico profesional,
+            cuidando el valor del inmueble y optimizando los tiempos de operación. Es el
+            compromiso mutuo por el cual el/ los propietarios me autorizan a publicar,
+            comercializar, reservar y vender su propiedad, y MPP a brindar el servicio
+            premium detallado con anterioridad. El propietario conserva total control
+            sobre las decisiones finales, mientras que el corredor asume la
+            responsabilidad de la gestión comercial.
+          </p>
+          <div>
+            <p className="font-semibold text-[#2F2A29] mb-2">Documentación requerida:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Copia del DNI del/ los propietarios, para verificar identidades.</li>
+              <li>Copia de Escritura/ Boleto, acredita quien/es son los propietarios legales.</li>
+              <li>
+                Expensas y ABL y AYSA, demuestra el libre deuda, es los primero que pide
+                un comprador serio.
+              </li>
+              <li>
+                Reglamento de copropiedad, información esencial para que el comprador
+                conozca sobre las normas del edificio.
+              </li>
+              <li>
+                Planos municipales aprobados y actualizados, confirma las medidas exactas
+                evitando conflictos futuros y lo habilita a venta APTO crédito
+                hipotecario.
+              </li>
+            </ul>
+          </div>
+          <p>
+            Si te falta algo, te ayudo como parte del servicio a gestionarlo para
+            regularizar la documentación.
+          </p>
+        </div>
+      )
+    },
+    {
       question: '¿Cuál es el plazo estimado para vender mi propiedad?',
       answer: 'Trabajo con un objetivo de resultados medibles en un plazo máximo estimado de 90 días, aunque esto puede variar según las características del inmueble y las condiciones actuales del mercado. Cada propiedad es única y recibe un plan estratégico personalizado.'
     },
