@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Facebook, Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { Input } from './ui/Input';
@@ -16,40 +16,13 @@ export function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [nextUrl, setNextUrl] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await fetch('https://formsubmit.co/ajax/contacto@martinpinto.com.ar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: `Consulta - ${formData.name || 'Contacto'}`,
-          _template: 'table',
-          _captcha: 'false',
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          operation: formData.operation,
-          message: formData.message
-        })
-      });
-    } catch (error) {
-      console.error('Error al enviar el formulario:', error);
-    }
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        operation: 'sell',
-        message: ''
-      });
-    }, 3000);
-  };
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setSubmitted(params.get('sent') === '1');
+    setNextUrl(`${window.location.origin}${window.location.pathname}?sent=1#contact`);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -102,7 +75,15 @@ export function Contact() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form
+                  action="https://formsubmit.co/contacto@martinpinto.com.ar"
+                  method="POST"
+                  className="space-y-4"
+                >
+                  <input type="hidden" name="_subject" value="Nueva consulta desde el sitio" />
+                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="_captcha" value="true" />
+                  <input type="hidden" name="_next" value={nextUrl} />
                   <Input
                     label="Nombre completo"
                     name="name"
