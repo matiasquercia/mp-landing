@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Facebook, Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
+import { AlertCircle, Facebook, Loader2, Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { Input } from './ui/Input';
 import { TextArea } from './ui/TextArea';
@@ -16,25 +16,40 @@ export function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
   const [captchaError, setCaptchaError] = useState('');
+  const [captchaReady, setCaptchaReady] = useState(false);
   const captchaRef = useRef<HTMLDivElement | null>(null);
+  const widgetIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     const renderCaptcha = () => {
       if (!captchaRef.current) return;
       if (!(window as any).turnstile) return;
-      if (captchaRef.current.childElementCount > 0) return;
+      if (widgetIdRef.current !== null) return;
 
-      (window as any).turnstile.render(captchaRef.current, {
+      const id = (window as any).turnstile.render(captchaRef.current, {
         sitekey: '0x4AAAAAACYOL65DLlpTVVH-',
+        appearance: 'always',
+        retry: 'auto',
+        'refresh-expired': 'auto',
         callback: (token: string) => {
           setCaptchaToken(token);
           setCaptchaError('');
+          setCaptchaReady(true);
         },
-        'expired-callback': () => setCaptchaToken(''),
-        'error-callback': () => setCaptchaToken('')
+        'expired-callback': () => {
+          setCaptchaToken('');
+          setCaptchaReady(false);
+        },
+        'error-callback': () => {
+          setCaptchaToken('');
+          setCaptchaReady(false);
+        }
       });
+      widgetIdRef.current = id;
     };
 
     if (document.querySelector('script[src*="challenges.cloudflare.com/turnstile/v0/api.js"]')) {
@@ -65,8 +80,10 @@ export function Contact() {
     }
 
     setCaptchaError('');
+    setSubmitError('');
+    setIsSubmitting(true);
     try {
-      await fetch('https://formsubmit.co/ajax/contacto@martinpinto.com.ar', {
+      const response = await fetch('https://formsubmit.co/ajax/contacto@martinpinto.com.ar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
@@ -77,10 +94,13 @@ export function Contact() {
           email: formData.email,
           phone: formData.phone,
           operation: formData.operation,
-          message: formData.message,
-          'cf-turnstile-response': captchaToken
+          message: formData.message
         })
       });
+
+      if (!response.ok) {
+        throw new Error('No se pudo enviar el formulario');
+      }
 
       setSubmitted(true);
       setTimeout(() => {
@@ -93,12 +113,16 @@ export function Contact() {
           message: ''
         });
         setCaptchaToken('');
-        if (captchaRef.current) {
-          captchaRef.current.innerHTML = '';
+        setCaptchaReady(false);
+        if ((window as any).turnstile && widgetIdRef.current !== null) {
+          (window as any).turnstile.reset(widgetIdRef.current);
         }
-      }, 3000);
+      }, 4000);
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
+      setSubmitError('No se pudo enviar el mensaje. Intentá de nuevo en unos minutos.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -207,14 +231,33 @@ export function Contact() {
 
                   <div>
                     <div ref={captchaRef} />
-                    {captchaError ? (
-                      <p className="text-sm text-red-600 mt-2">{captchaError}</p>
-                    ) : null}
+                    {captchaError && (
+                      <div className="flex items-center gap-2 mt-2 text-red-600">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                        <p className="text-sm">{captchaError}</p>
+                      </div>
+                    )}
                   </div>
+
+                  {submitError && (
+                    <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                      <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                      <p className="text-sm">{submitError}</p>
+                    </div>
+                  )}
                   
-                  <Button type="submit" variant="primary" className="w-full">
-                    <Send className="w-5 h-5" />
-                    Enviar consulta
+                  <Button type="submit" variant="primary" className="w-full" disabled={isSubmitting || !captchaReady}>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Enviar consulta
+                      </>
+                    )}
                   </Button>
                 </form>
               )}
