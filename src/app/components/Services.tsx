@@ -134,8 +134,8 @@ export function Services() {
   const progressPercentage = ((activeStep + 1) / processSteps.length) * 100;
 
   return (
-    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden overflow-x-hidden">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-x-clip">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -273,7 +273,7 @@ export function Services() {
             </div>
 
             {/* Columna derecha: Contenido del paso activo - altura fija */}
-            <div className="flex-1 h-[480px] sm:h-[500px] relative">
+            <div className="flex-1 h-[480px] sm:h-[500px] relative px-5">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
@@ -344,7 +344,7 @@ export function Services() {
           </div>
 
           {/* Desktop: Card con imagen y contenido */}
-          <div className="hidden lg:block relative">
+          <div className="hidden lg:block relative px-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}
