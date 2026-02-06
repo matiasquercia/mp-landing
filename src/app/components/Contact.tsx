@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { AlertCircle, Facebook, Loader2, Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { AlertCircle, CheckCircle2, Facebook, Loader2, Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { Input } from './ui/Input';
 import { TextArea } from './ui/TextArea';
@@ -18,52 +18,9 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [captchaToken, setCaptchaToken] = useState('');
-  const [captchaError, setCaptchaError] = useState('');
-  const [captchaReady, setCaptchaReady] = useState(false);
-  const captchaRef = useRef<HTMLDivElement | null>(null);
-  const widgetIdRef = useRef<string | null>(null);
-
-  useEffect(() => {
-    const renderCaptcha = () => {
-      if (!captchaRef.current) return;
-      if (!(window as any).turnstile) return;
-      if (widgetIdRef.current !== null) return;
-
-      const id = (window as any).turnstile.render(captchaRef.current, {
-        sitekey: '0x4AAAAAACYOL65DLlpTVVH-',
-        appearance: 'always',
-        retry: 'auto',
-        'refresh-expired': 'auto',
-        callback: (token: string) => {
-          setCaptchaToken(token);
-          setCaptchaError('');
-          setCaptchaReady(true);
-        },
-        'expired-callback': () => {
-          setCaptchaToken('');
-          setCaptchaReady(false);
-        },
-        'error-callback': () => {
-          setCaptchaToken('');
-          setCaptchaReady(false);
-        }
-      });
-      widgetIdRef.current = id;
-    };
-
-    if (document.querySelector('script[src*="challenges.cloudflare.com/turnstile/v0/api.js"]')) {
-      renderCaptcha();
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-    script.async = true;
-    script.defer = true;
-    script.onload = renderCaptcha;
-    document.body.appendChild(script);
-  }, []);
+  const [humanCheck, setHumanCheck] = useState(false);
+  const [humanCheckError, setHumanCheckError] = useState('');
+  const [honeypot, setHoneypot] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -74,12 +31,16 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!captchaToken) {
-      setCaptchaError('Por favor completá el captcha antes de enviar.');
+
+    // Honeypot: si se llenó, es un bot
+    if (honeypot) return;
+
+    if (!humanCheck) {
+      setHumanCheckError('Por favor confirmá que no sos un robot.');
       return;
     }
 
-    setCaptchaError('');
+    setHumanCheckError('');
     setSubmitError('');
     setIsSubmitting(true);
     try {
@@ -112,11 +73,7 @@ export function Contact() {
           operation: 'sell',
           message: ''
         });
-        setCaptchaToken('');
-        setCaptchaReady(false);
-        if ((window as any).turnstile && widgetIdRef.current !== null) {
-          (window as any).turnstile.reset(widgetIdRef.current);
-        }
+        setHumanCheck(false);
       }, 4000);
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
@@ -229,15 +186,51 @@ export function Contact() {
                     rows={5}
                   />
 
-                  <div>
-                    <div ref={captchaRef} />
-                    {captchaError && (
-                      <div className="flex items-center gap-2 mt-2 text-red-600">
-                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                        <p className="text-sm">{captchaError}</p>
-                      </div>
-                    )}
+                  {/* Honeypot - oculto para humanos, visible para bots */}
+                  <div className="absolute opacity-0 top-0 left-0 h-0 w-0 -z-10" aria-hidden="true">
+                    <input
+                      type="text"
+                      name="_honey"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
                   </div>
+
+                  {/* Checkbox de verificación */}
+                  <div
+                    className={`flex items-center gap-3 p-4 rounded-lg border cursor-pointer select-none transition-colors ${
+                      humanCheck
+                        ? 'bg-[#D6ECBA]/20 border-[#D6ECBA]'
+                        : humanCheckError
+                          ? 'bg-red-50 border-red-300'
+                          : 'bg-white border-[#E5E7EB] hover:border-[#D6ECBA]/60'
+                    }`}
+                    onClick={() => {
+                      setHumanCheck(!humanCheck);
+                      setHumanCheckError('');
+                    }}
+                  >
+                    <div
+                      className={`w-6 h-6 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                        humanCheck
+                          ? 'bg-[#2F2A29] border-[#2F2A29]'
+                          : 'border-[#D1D5DB] bg-white'
+                      }`}
+                    >
+                      {humanCheck && <CheckCircle2 className="w-4 h-4 text-white" />}
+                    </div>
+                    <span className="text-sm text-[#2F2A29]">
+                      Confirmo que no soy un robot
+                    </span>
+                  </div>
+                  {humanCheckError && (
+                    <div className="flex items-center gap-2 text-red-600">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      <p className="text-sm">{humanCheckError}</p>
+                    </div>
+                  )}
 
                   {submitError && (
                     <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700">
@@ -246,7 +239,7 @@ export function Contact() {
                     </div>
                   )}
                   
-                  <Button type="submit" variant="primary" className="w-full" disabled={isSubmitting || !captchaReady}>
+                  <Button type="submit" variant="primary" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-5 h-5 animate-spin" />
