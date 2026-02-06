@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Facebook, Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { Input } from './ui/Input';
@@ -16,12 +16,38 @@ export function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
-  const [nextUrl, setNextUrl] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaError, setCaptchaError] = useState('');
+  const captchaRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setSubmitted(params.get('sent') === '1');
-    setNextUrl(`${window.location.origin}${window.location.pathname}?sent=1#contact`);
+    const renderCaptcha = () => {
+      if (!captchaRef.current) return;
+      if (!(window as any).turnstile) return;
+      if (captchaRef.current.childElementCount > 0) return;
+
+      (window as any).turnstile.render(captchaRef.current, {
+        sitekey: '0x4AAAAAACYOL65DLlpTVVH-',
+        callback: (token: string) => {
+          setCaptchaToken(token);
+          setCaptchaError('');
+        },
+        'expired-callback': () => setCaptchaToken(''),
+        'error-callback': () => setCaptchaToken('')
+      });
+    };
+
+    if (document.querySelector('script[src*="challenges.cloudflare.com/turnstile/v0/api.js"]')) {
+      renderCaptcha();
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    script.async = true;
+    script.defer = true;
+    script.onload = renderCaptcha;
+    document.body.appendChild(script);
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -29,6 +55,51 @@ export function Contact() {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!captchaToken) {
+      setCaptchaError('Por favor completá el captcha antes de enviar.');
+      return;
+    }
+
+    setCaptchaError('');
+    try {
+      await fetch('https://formsubmit.co/ajax/contacto@martinpinto.com.ar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Consulta - ${formData.name || 'Contacto'}`,
+          _template: 'table',
+          _captcha: 'false',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          operation: formData.operation,
+          message: formData.message,
+          'cf-turnstile-response': captchaToken
+        })
+      });
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          operation: 'sell',
+          message: ''
+        });
+        setCaptchaToken('');
+        if (captchaRef.current) {
+          captchaRef.current.innerHTML = '';
+        }
+      }, 3000);
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+    }
   };
 
   return (
@@ -75,15 +146,7 @@ export function Contact() {
                   </p>
                 </div>
               ) : (
-                <form
-                  action="https://formsubmit.co/contacto@martinpinto.com.ar"
-                  method="POST"
-                  className="space-y-4"
-                >
-                  <input type="hidden" name="_subject" value="Nueva consulta desde el sitio" />
-                  <input type="hidden" name="_template" value="table" />
-                  <input type="hidden" name="_captcha" value="true" />
-                  <input type="hidden" name="_next" value={nextUrl} />
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <Input
                     label="Nombre completo"
                     name="name"
@@ -141,6 +204,13 @@ export function Contact() {
                     placeholder="Contame qué necesitás..."
                     rows={5}
                   />
+
+                  <div>
+                    <div ref={captchaRef} />
+                    {captchaError ? (
+                      <p className="text-sm text-red-600 mt-2">{captchaError}</p>
+                    ) : null}
+                  </div>
                   
                   <Button type="submit" variant="primary" className="w-full">
                     <Send className="w-5 h-5" />
