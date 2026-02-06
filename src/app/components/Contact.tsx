@@ -17,21 +17,26 @@ export function Contact() {
 
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Consulta - ${formData.name || 'Contacto'}`;
-    const body = [
-      `Nombre: ${formData.name}`,
-      `Email: ${formData.email}`,
-      `Teléfono: ${formData.phone}`,
-      `Tipo de operación: ${formData.operation}`,
-      '',
-      formData.message
-    ].join('\n');
-    const mailto = `mailto:contacto@martinpinto.com.ar?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    try {
+      await fetch('https://formsubmit.co/ajax/contacto@martinpinto.com.ar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Consulta - ${formData.name || 'Contacto'}`,
+          _template: 'table',
+          _captcha: 'false',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          operation: formData.operation,
+          message: formData.message
+        })
+      });
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+    }
 
     setSubmitted(true);
     setTimeout(() => {
