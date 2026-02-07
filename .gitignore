@@ -27,3 +27,6 @@ npm-debug.log*
 .cache/
 .eslintcache
 
+# FTP deploy script
+ftp-deploy.cjs
+
