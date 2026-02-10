@@ -39,8 +39,8 @@ export function Hero() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.1) 100%)' }} />
       </div>
 
-      {/* Fade suave hacia la siguiente sección (blanco) */}
-      <div className="absolute bottom-0 left-0 right-0 h-44 sm:h-56 lg:h-64 z-10 pointer-events-none" style={{ background: 'linear-gradient(to top, rgb(255,255,255) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.4) 60%, transparent 100%)' }} />
+      {/* Fade suave hacia la siguiente sección */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-52 lg:h-60 z-10 pointer-events-none" style={{ background: 'linear-gradient(to top, #F9FAFB 0%, rgba(249,250,251,0.9) 20%, rgba(249,250,251,0.5) 50%, rgba(249,250,251,0.15) 75%, transparent 100%)' }} />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32 lg:pt-24 lg:pb-40 min-h-[90vh] lg:min-h-screen flex flex-col items-center justify-center">
         <motion.div
@@ -52,12 +52,12 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="mb-10 lg:mb-12 -mt-14 lg:-mt-20 flex justify-center"
+            className="mb-14 lg:mb-18 -mt-14 lg:-mt-20 flex justify-center"
           >
             <img 
               src={logoGreen} 
               alt="Martín Pinto Propiedades" 
-              className="h-36 sm:h-48 lg:h-64 w-auto drop-shadow-[0_4px_30px_rgba(214,236,186,0.3)]"
+              className="h-44 sm:h-56 lg:h-72 w-auto drop-shadow-[0_4px_30px_rgba(214,236,186,0.3)]"
             />
           </motion.div>
 

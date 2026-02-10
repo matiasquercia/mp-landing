@@ -48,7 +48,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+    <section id="about" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#F9FAFB]">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#F9FAFB] via-white to-[#D6ECBA]/10" />
       
