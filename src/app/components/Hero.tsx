@@ -52,7 +52,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="mb-14 lg:mb-18 -mt-14 lg:-mt-20 flex justify-center"
+            className="mb-20 lg:mb-24 -mt-14 lg:-mt-20 flex justify-center"
           >
             <img 
               src={logoGreen} 
