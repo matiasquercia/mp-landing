@@ -1,21 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+// @ts-expect-error - Image exists, TS cache issue with relative path resolution
 import logoImage from '../../assets/logo/MP-prop-03.png';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [isVisible, setIsVisible] = useState(false);
   
   const { scrollY } = useScroll();
-  // Logo aparece gradualmente entre 150px y 250px de scroll
   const logoOpacity = useTransform(scrollY, [150, 250], [0, 1]);
   const logoScale = useTransform(scrollY, [150, 250], [0.8, 1]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollPos = window.scrollY;
+      setIsScrolled(scrollPos > 20);
+      
+      // Ocultar header cuando estamos en el Hero (viewport top)
+      // Mostrar cuando se scrollea más allá del hero
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        const heroBottom = heroEl.offsetHeight - 100;
+        setIsVisible(scrollPos > heroBottom);
+      } else {
+        setIsVisible(scrollPos > 300);
+      }
       
       // Update active section based on scroll position
       const sections = ['hero', 'about', 'services', 'alliances', 'faq', 'contact'];
@@ -60,13 +72,13 @@ export function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-black/5 border-b border-[#E5E7EB]/50' 
-        : 'bg-transparent'
+      isVisible
+        ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-black/5 border-b border-[#E5E7EB]/50 translate-y-0'
+        : '-translate-y-full'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-20">
-          {/* Logo - aparece al scrollear (ocupa espacio fijo para balance) */}
+          {/* Logo */}
           <div className="w-40 flex-shrink-0">
             <motion.button 
               onClick={() => scrollToSection('hero')}
@@ -102,7 +114,7 @@ export function Header() {
                 {activeSection === item.href && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute inset-0 bg-[#D6ECBA]/30 rounded-lg -z-10"
+                    className="absolute inset-0 rounded-lg -z-10 bg-[#D6ECBA]/30"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -116,7 +128,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl bg-[#F9FAFB] border border-[#E5E7EB]/50 text-[#2F2A29] ml-auto"
+            className="lg:hidden p-2.5 rounded-xl ml-auto bg-[#F9FAFB] border border-[#E5E7EB]/50 text-[#2F2A29]"
             whileTap={{ scale: 0.95 }}
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

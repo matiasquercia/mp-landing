@@ -1,22 +1,15 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Button } from './ui/Button';
 import { motion, useScroll, useTransform } from 'motion/react';
-import logoFull from '../../assets/logo/MP-prop-01.png';
+// @ts-expect-error - Image exists, TS cache issue with relative path resolution
+import logoGreen from '../../assets/logo/MP-prop-02.png';
 
-// Video de Buenos Aires - archivo local en public/
 const heroVideo = '/hero-video.mp4';
-// Poster: imagen del Obelisco de Buenos Aires como fallback
 const heroPoster = 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=2000&q=80';
 
 export function Hero() {
   const { scrollY } = useScroll();
-  
-  // Parallax transforms for all hero content (sin fade out)
-  const contentY = useTransform(scrollY, [0, 400], [0, -100]);
-  
-  // Logo moves slightly faster for depth effect
-  const logoY = useTransform(scrollY, [0, 300], [0, -120]);
+  const contentY = useTransform(scrollY, [0, 400], [0, -80]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -24,124 +17,111 @@ export function Hero() {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   };
 
   return (
     <section id="hero" className="relative min-h-[90vh] lg:min-h-screen overflow-hidden">
-      {/* Background Video - Ciudad */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] to-[#16213e]">
+      {/* Background Video con overlay degradé */}
+      <div className="absolute inset-0 bg-[#1a1a1a]">
         <video
           autoPlay
           muted
           loop
           playsInline
           poster={heroPoster}
-          className="w-full h-full object-cover object-center opacity-80"
+          className="w-full h-full object-cover object-center opacity-50"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        {/* Gradient overlays for readability - balance entre video visible y texto legible */}
-        <div className="absolute inset-0 bg-white/50" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-white/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/40" />
+        {/* Overlay degradé: muy oscuro arriba, aclarando hacia abajo */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.1) 100%)' }} />
       </div>
+
+      {/* Fade suave hacia la siguiente sección (blanco) */}
+      <div className="absolute bottom-0 left-0 right-0 h-44 sm:h-56 lg:h-64 z-10 pointer-events-none" style={{ background: 'linear-gradient(to top, rgb(255,255,255) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.4) 60%, transparent 100%)' }} />
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-[90vh] lg:min-h-screen flex flex-col justify-center">
-        {/* All Hero Content with Parallax */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32 lg:pt-24 lg:pb-40 min-h-[90vh] lg:min-h-screen flex flex-col items-center justify-center">
         <motion.div
-          style={{
-            y: contentY,
-          }}
+          style={{ y: contentY }}
+          className="w-full flex flex-col items-center"
         >
-          {/* Logo prominente - Grande y centrado, flotando sobre el video */}
+          {/* Logo verde */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ y: logoY }}
-            className="mb-10 lg:mb-14 flex justify-center"
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="mb-10 lg:mb-12 -mt-14 lg:-mt-20 flex justify-center"
           >
-            <div className="relative inline-block">
-              {/* Halo suave para separar del video sin placa sólida */}
-              <div className="absolute inset-0 scale-110 rounded-full bg-white/30 blur-2xl pointer-events-none" />
-              <img 
-                src={logoFull} 
-                alt="Martín Pinto Propiedades" 
-                className="relative z-10 h-48 sm:h-64 lg:h-80 w-auto drop-shadow-[0_18px_40px_rgba(0,0,0,0.35)]"
-              />
-            </div>
+            <img 
+              src={logoGreen} 
+              alt="Martín Pinto Propiedades" 
+              className="h-36 sm:h-48 lg:h-64 w-auto drop-shadow-[0_4px_30px_rgba(214,236,186,0.3)]"
+            />
           </motion.div>
 
-          <div className="max-w-2xl lg:max-w-4xl mx-auto text-center">
-          {/* Main Title */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#2F2A29] mb-4 lg:mb-5 leading-[1.15] tracking-tight sm:whitespace-nowrap"
-            style={{ textShadow: '0 2px 10px rgba(255, 255, 255, 0.8)' }}
-          >
-            <span className="relative inline-block">
-              <span className="relative z-10">Venta</span>
-              <span className="absolute bottom-0.5 sm:bottom-1 left-0 right-0 h-1.5 sm:h-2 bg-[#D6ECBA]/70 -z-0" />
-            </span>
-            ,{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">alquiler</span>
-              <span className="absolute bottom-0.5 sm:bottom-1 left-0 right-0 h-1.5 sm:h-2 bg-[#D6ECBA]/70 -z-0" />
-            </span>{' '}
-            y{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">tasaciones</span>
-              <span className="absolute bottom-0.5 sm:bottom-1 left-0 right-0 h-1.5 sm:h-2 bg-[#D6ECBA]/70 -z-0" />
-            </span>{' '}
-            en CABA
-          </motion.h1>
-          
-          {/* CTA */}
-          <motion.div 
+          {/* Título y contenido */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex justify-center mt-10"
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="text-center max-w-3xl w-full"
           >
-            <Button 
-              variant="primary" 
-              size="lg"
-              onClick={() => scrollToSection('contact')}
-              className="shadow-lg shadow-[#2F2A29]/15 gap-2 text-sm lg:text-base"
+            <h1 className="text-lg sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-8 leading-[1.2] tracking-tight">
+              <span className="relative inline-block">
+                <span className="relative z-10">Venta</span>
+                <span className="absolute bottom-0.5 sm:bottom-1 left-0 right-0 h-1.5 sm:h-2 bg-[#D6ECBA]/40 -z-0" />
+              </span>
+              ,{' '}
+              <span className="relative inline-block">
+                <span className="relative z-10">alquiler</span>
+                <span className="absolute bottom-0.5 sm:bottom-1 left-0 right-0 h-1.5 sm:h-2 bg-[#D6ECBA]/40 -z-0" />
+              </span>{' '}
+              y{' '}
+              <span className="relative inline-block">
+                <span className="relative z-10">tasaciones</span>
+                <span className="absolute bottom-0.5 sm:bottom-1 left-0 right-0 h-1.5 sm:h-2 bg-[#D6ECBA]/40 -z-0" />
+              </span>{' '}
+              en CABA
+            </h1>
+            
+            {/* CTA - botón verde sobre fondo oscuro */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex justify-center mb-10 lg:mb-12"
             >
-              Consulta gratuita
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </motion.div>
-        </div>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="inline-flex items-center gap-2 px-6 py-3 lg:px-8 lg:py-4 bg-[#D6ECBA] text-[#2F2A29] rounded-xl font-semibold text-sm lg:text-base hover:bg-[#D6ECBA]/90 transition-colors shadow-lg shadow-[#D6ECBA]/20"
+              >
+                Consulta gratuita
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </motion.div>
 
-          {/* Stats - Bottom - Minimalist */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mt-10 lg:mt-12 pt-6 border-t border-[#2F2A29]/20 max-w-md mx-auto"
-          >
-            <div className="grid grid-cols-3 gap-6 text-center">
-              {[
-                { value: '20+', label: 'Años exp.' },
-                { value: '100+', label: 'Propiedades' },
-                { value: '90', label: 'Días máx.' }
-              ].map((stat, index) => (
-                <div key={index}>
-                  <div className="text-2xl sm:text-3xl font-bold text-[#2F2A29]">{stat.value}</div>
-                  <div className="text-xs text-[#6B7280] mt-0.5">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+            {/* Stats */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.8 }}
+              className="pt-6 border-t border-white/15"
+            >
+              <div className="grid grid-cols-3 gap-4 text-center max-w-xs mx-auto">
+                {[
+                  { value: '20+', label: 'Años exp.' },
+                  { value: '100+', label: 'Propiedades' },
+                  { value: '90', label: 'Días máx.' }
+                ].map((stat, index) => (
+                  <div key={index}>
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">{stat.value}</div>
+                    <div className="text-[10px] sm:text-xs text-white/60 mt-0.5">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
