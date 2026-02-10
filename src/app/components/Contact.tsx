@@ -329,11 +329,11 @@ export function Contact() {
                 <div className="space-y-2 text-sm text-[#6B7280]">
                   <div className="flex justify-between">
                     <span>Lunes a Viernes:</span>
-                    <span className="font-medium text-[#2F2A29]">9:00 - 20:00</span>
+                    <span className="font-medium text-[#2F2A29]">10:00 - 17:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Sábados:</span>
-                    <span className="font-medium text-[#2F2A29]">10:00 - 14:00</span>
+                    <span className="font-medium text-[#2F2A29]">10:00 - 13:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Domingos:</span>
